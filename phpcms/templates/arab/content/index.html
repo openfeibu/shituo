@@ -23,14 +23,14 @@
         <div class="w1200 fb-position-absolute cargoTracking_box">
             <div class="cargoTracking">
                 <div class="cargoTracking_title"><?php echo $CATEGORYS[20][$GLOBALS['prefix']."catname"]; ?></div>
-                <form action="货物跟踪.html" style="text-align: right">
+                <form action="index.php?m=content&c=index&a=cargo_tracking&catid=20" style="text-align: right">
                     <div class="item">
 
                         <div class="search_form fb-inlineBlock">广州世拓</div>
                         <label  class="fb-inlineBlock">{SL('company')}</label>
                     </div>
                     <div class="item">
-                         <input type="submit" value="{SL('query')}" class=" fb-inlineBlock opa_active">
+                         <input type="submit" name="dosubmit" value="{SL('query')}" class=" fb-inlineBlock opa_active">
                         <input type="text" name="search_num" class="search_num fb-inlineBlock">
                         <label class="fb-inlineBlock">{SL('number')}</label>
 
