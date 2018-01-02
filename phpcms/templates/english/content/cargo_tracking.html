@@ -1,0 +1,45 @@
+{template "content","header"}
+    <div class="main pdt">
+        <div class="page_banner fb-position-relative" >
+            <img class="fb-position-absolute" src="{$CATEGORYS[18][image]}" alt="">
+        </div>
+        <div class="main_content">
+            <div class="line_con fb-clearfix w1200">
+                <div class="line_tab fb-float-left">
+                    {template "content","express_left"}
+                </div>
+                <div class="line_search_content fb-float-right">
+                    <div class="line_search">
+                        <form action="">
+                            <label for="" class="fb-inlineBlock">公司名称</label>
+                            <div class="search_form fb-inlineBlock">广州世拓</div>
+                            <label for="" class="fb-inlineBlock">运单单号</label>
+                            <input type="text" name="search_num" class="search_num fb-inlineBlock">
+                            <input type="submit" value="查询" class=" fb-inlineBlock opa_active">
+                        </form>
+                    </div>
+                    <div class="line_search_text">
+                            <div class="line_search_text_title">运单号：12345678910</div>
+                            <div class="line_search_text_resule fb-position-relative">
+                                <div class="line_search_text_resule_item fb-position-relative first">
+                                    <p>【广州市】 快件离开 <label>广州白云仓</label> 已发往 <label>广州航空部</label></p>
+                                    <span>2017-11-17 19:30:25</span>
+                                </div>
+                                <div class="line_search_text_resule_item fb-position-relative">
+                                    <p>【广州市】 快件离开 广州白云仓 已发往 广州航空部</p>
+                                    <span>2017-11-17 19:30:25</span>
+                                </div>
+                                <div class="line_search_text_resule_item fb-position-relative">
+                                    <p>【广州市】 快件离开 广州白云仓 已发往 广州航空部</p>
+                                    <span>2017-11-17 19:30:25</span>
+                                </div>
+                            </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    {template "content","footer"}
+</body>
+</html>

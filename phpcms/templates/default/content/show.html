@@ -1,0 +1,41 @@
+{template "content","header"}
+    <div class="main pdt">
+        <div class="page_banner fb-position-relative" >
+            <img class="fb-position-absolute" src="{$CATEGORYS[13][image]}" alt="">
+        </div>
+        <div class="main_content">
+            <div class="news_con fb-clearfix w1200">
+                <div class="news_detail fb-float-left">
+                    <div class="home_position">
+                        <p>{SL('current_position')} <?php echo $CATEGORYS[$CAT[parentid]][$GLOBALS['prefix']."catname"] ." > " . $CAT[$GLOBALS['prefix']."catname"];?></p>
+                    </div>
+                    <div class="fb-article">
+                        <div class="fb-article-title"><?php $key = $GLOBALS['prefix']."title"; echo $$key; ?></div>
+                        <div class="fb-article-source">
+                            <div class="date fb-inlineBlock">{date('Y-m-d',time($inputtime))}</div>
+                            <div class="source fb-inlineBlock">{SL('comeform')}：{$copyfrom}</div>
+                        </div>
+                        <div class="fb-article-content">
+                            <?php $key = $GLOBALS['prefix']."content"; echo $$key; ?>
+                        </div>
+                    </div>
+                </div>
+                <div class="hot_news fb-float-right">
+                    <div class="hot_box">
+                        <div class="hot_title">{SL('hot_news')}</div>
+						{php $i=1}
+						{pc:content action="position" posid="18" catid="" order="id DESC" num="8" }
+						{loop $data $n $r}
+						<div class="hot_item fb-overflow-2"><a href="{$r['url']}">{$i}.<?php echo  $r[$GLOBALS['prefix']."title"] ?></a></div>
+						{php $i++}
+						{/loop}
+						{/pc}
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+	{template "content","footer"}
+</body>
+</html>

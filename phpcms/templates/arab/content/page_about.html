@@ -1,0 +1,21 @@
+{template "content","header"}
+<div class="main pdt">
+    <div class="page_banner fb-position-relative">
+        <img class="fb-position-absolute" src="{$CATEGORYS[22][image]}" alt="">
+    </div>
+    <div class="main_content">
+      <div class="about_company w1200">
+          <?php $key = $GLOBALS['prefix']."content"; echo $$key; ?>
+      </div>
+        <div class="sense w1200 fb-clearfix">
+            {pc:get sql="SELECT * FROM shituo_page where catid=45"}
+            {loop $data $key $val}
+            <?php echo $val[$GLOBALS['prefix']."content"];?>
+            {/loop}
+            {/pc}
+        </div>
+    </div>
+</div>
+{template "content","footer"}
+</body>
+</html>

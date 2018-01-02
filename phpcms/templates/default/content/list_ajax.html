@@ -1,0 +1,52 @@
+<div class="news_list_text w1200 fb-clearfix" id="ajax_list">
+    {pc:content action="lists" catid="$catid" order="id DESC" page="$page" moreinfo="1" num="6"}
+    {loop $data $n $r}
+    <div class="news_list_text_item fb-float-left">
+        <div class="news_list_text_item_box fb-transition">
+            <a href="{$r['url']}">
+                <div class="date">{date('Y-m-d',$r[inputtime])}</div>
+                <div class="content"><?php echo $r[$GLOBALS['prefix']."title"];?></div>
+            </a>
+        </div>
+    </div>
+    {/loop}
+    {/pc}
+</div>
+<div class="loadingMore fb-transition">
+    <p>{SL('load_more')}</p>
+</div>
+<div class="loadingEnd">
+    <p>{SL('no_more')}</p>
+</div>
+<script type="text/javascript">
+    $(function(){
+        curr_page = 1;
+        $(".news_list_img .news_list_img_item").hover(function(){
+                $(this).addClass("active").siblings(".news_list_img_item").removeClass("active");
+        },function(){
+
+        })
+        $(".loadingMore").on("click",function(){
+            curr_page++;
+            $fb.loading(
+                    {
+                        color:'#fff',
+                        content:'正在获取中...',
+                    }
+            )
+            $.get("{siteurl($siteid)}/index.php?m=content&c=index&a=ajaxlists&catid={$catid}&page="+curr_page, function(result){
+                $fb.closeLoading();
+                if(result)
+                {
+                    $(".news_list_text").append(result)
+                }
+                else{
+                    $(".loadingMore").hide();
+                    $(".loadingEnd").show();
+                }
+            });
+
+        })
+    })
+
+</script>

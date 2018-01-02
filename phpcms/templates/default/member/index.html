@@ -1,0 +1,116 @@
+{template "member","header"}
+<div class="main pdt">
+    <div class="page_banner fb-position-relative" >
+        <img class="fb-position-absolute" src="{CSS_PATH}shituo/images/person_banner.png" alt="">
+    </div>
+    <div class="main_content">
+        <div class="person_con ">
+            <div class="person_head">
+                <div class="img"><img src="{CSS_PATH}shituo/images/person.png" alt=""></div>
+                <div class="name">{$memberinfo['username']}</div>
+            </div>
+            <div class="person_info">
+                <div class="person_info_title">账号信息</div>
+                <div class="person_info_item fb-clearfix">
+                    <label>账号</label>
+                    <span>{$memberinfo['username']}</span>
+                </div>
+                <div class="person_info_item fb-clearfix">
+                    <label>昵称</label>
+                    <span>{$memberinfo['nickname']}</span>
+                    <div class="update update_name">修改</div>
+
+                </div>
+                <div class="person_info_item fb-clearfix">
+                    <label>密码</label>
+                    <span>建议您经常修改密码，以保证帐号更加安全。</span>
+                    <div class="update update_pass">修改</div>
+                </div>
+            </div>
+            <div class="myDelivery">
+                <div class="myDelivery_title">我的快件</div>
+                <div class="myDelivery_con fb-clearfix">
+                    <div class="nomyDelivery_item">您还没有快件记录</div>
+                    <div class="myDelivery_item fb-float-left fb-transition">
+                        <a href="">
+                            <div class="n_title">运单号：LAK132483ASF</div>
+                            <div class="n_con fb-overflow-2">最新：【广州市】快件离开 广州航空部 已发
+                                往 迪拜</div>
+                            <div class="n_date">2017-11-17 21:10:32</div>
+                        </a>
+                    </div>
+                    <div class="myDelivery_item fb-float-left fb-transition">
+                        <a href="">
+                            <div class="n_title">运单号：LAK132483ASF</div>
+                            <div class="n_con fb-overflow-2">最新：【广州市】快件离开 广州航空部 已发
+                                往 迪拜</div>
+                            <div class="n_date">2017-11-17 21:10:32</div>
+                        </a>
+                    </div>
+                    <div class="myDelivery_item fb-float-left fb-transition">
+                        <a href="">
+                            <div class="n_title">运单号：LAK132483ASF</div>
+                            <div class="n_con fb-overflow-2">最新：【广州市】快件离开 广州航空部 已发
+                                往 迪拜</div>
+                            <div class="n_date">2017-11-17 21:10:32</div>
+                        </a>
+                    </div>
+                    <div class="myDelivery_item fb-float-left fb-transition">
+                        <a href="">
+                            <div class="n_title">运单号：LAK132483ASF</div>
+                            <div class="n_con fb-overflow-2">最新：【广州市】快件离开 广州航空部 已发
+                                往 迪拜</div>
+                            <div class="n_date">2017-11-17 21:10:32</div>
+                        </a>
+                    </div>
+                    <div class="myDelivery_item fb-float-left fb-transition">
+                        <a href="">
+                            <div class="n_title">运单号：LAK132483ASF</div>
+                            <div class="n_con fb-overflow-2">最新：【广州市】快件离开 广州航空部 已发
+                                往 迪拜</div>
+                            <div class="n_date">2017-11-17 21:10:32</div>
+                        </a>
+                    </div>
+                    <div class="myDelivery_item fb-float-left fb-transition">
+                        <a href="">
+                            <div class="n_title">运单号：LAK132483ASF</div>
+                            <div class="n_con fb-overflow-2">最新：【广州市】快件离开 广州航空部 已发
+                                往 迪拜</div>
+                            <div class="n_date">2017-11-17 21:10:32</div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{template "content","footer"}
+<script>
+    $(function(){
+
+        $(".update_name").on("click",function(){
+            var that = $(this);
+            $fb.showModal({
+                title : '修改昵称',//提示的标题
+                textBox:'input', //input：为input；textarea：为textarea
+                placeholder:that.prev("span").text()//文本框提示
+            },function(val){
+                $fb.loading({time:1000});
+                that.prev("span").text(val)
+            })
+        })
+        $(".update_pass").on("click",function(){
+            var that = $(this);
+            $fb.showModal({
+                title : '修改密码',//提示的标题
+                textBox:'input', //input：为input；textarea：为textarea
+                placeholder:'********'//文本框提示
+            },function(val){
+                $fb.loading({time:1000});
+
+            })
+        })
+    })
+</script>
+</body>
+</html>

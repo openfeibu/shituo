@@ -1,0 +1,30 @@
+<div class="logo fb-float-left">
+    <a href="{siteurl($siteid)}"><img src="{CSS_PATH}shituo/images/logo.png" alt=""></a>
+</div>
+<div class="setLau fb-float-left  fb-position-relative">
+        <div class="lauBox_item {if $GLOBALS['lang'] == 'zh-cn'}active{/if}"><a href="{siteurl($siteid)}/index.php?lang=zh-cn">{SL('Chinese')}</a></div>
+        <div class="lauBox_item {if $GLOBALS['lang'] == 'en'}active{/if}" ><a href="{siteurl($siteid)}/index.php?lang=en">{SL('English')}</a></div>
+        <div class="lauBox_item {if $GLOBALS['lang'] == 'arab'}active{/if}"><a href="{siteurl($siteid)}/index.php?lang=arab">{SL('Arab')}</a></div>
+</div>
+<div class="header_login fb-float-right">
+    {if $_userid}
+    <!-- 已登录 -->
+    <div class="accout_img opa_active" style="display:block;"><a href="{APP_PATH}index.php?m=content&c=index&a=member_center&siteid={$siteid}"><img src="{CSS_PATH}shituo/images/person.png" alt=""/></a></div>
+    <!-- 已登录 -->
+    {else}
+    <!-- 未登录 -->
+    <div class="header_login_button opa_active">{SL('login')}</div>
+    <!-- 未登录 -->
+    {/if}
+
+</div>
+<div class="nav fb-float-right">
+    {pc:content action="category" catid="0" num="25" siteid="$siteid" order="listorder ASC"}
+        <ul>
+            <li  {if !$catid } class="active" {/if}><a href="{siteurl(1)}/index.php">{SL('index')}</a></li>
+            {loop $data $r}
+            <li {if $r[catid]==$CATEGORYS[$CAT[parentid]][catid] || $r[catid]==$catid  || $r[catid]==$CATEGORYS[$CAT[parentid]][parentid]}class="active"{/if}><a href="{$r[url]}"><?php echo  $r[$GLOBALS['prefix']."catname"] ?></a></li>
+            {/loop}
+        </ul>
+    {/pc}
+</div>

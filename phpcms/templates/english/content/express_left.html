@@ -1,0 +1,17 @@
+<div class="line_tab_title">{$CATEGORYS[18]['catname']}</div>
+<div class="line_tab_list">
+    {pc:content action="category" catid="18" siteid="$siteid" order="listorder ASC" return="data1"}
+    {loop $data1 $r1}
+    <div class="line_tab_item">
+        <a href="{$r1[url]}" {if $catid == $r1['catid']}class="active"{/if}>{$r1[catname]}</a>
+        <ul>
+        {pc:content action="category" catid="$r1[catid]" siteid="$siteid" order="listorder ASC" return="data2"}
+        {loop $data2 $r2}
+            <li><a {if $catid == $r2['catid']}class="active"{/if} href="{$r2[url]}#main_content">{$r2[catname]}</a></li>
+        {/loop}
+        {/pc}
+        </ul>
+    </div>
+    {/loop}
+    {/pc}
+</div>

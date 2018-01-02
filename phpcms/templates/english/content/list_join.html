@@ -1,0 +1,37 @@
+{template "content","header"}
+<div class="main pdt">
+    <div class="page_banner fb-position-relative">
+        <img class="fb-position-absolute" src="{$CATEGORYS[28][image]}" alt="">
+    </div>
+    <div class="main_content">
+        <div class="jion_con w1200 fb-clearfix">
+            {pc:content action="lists" catid="$catid" order="id ASC" moreinfo="1"}
+            {loop $data $n $r}
+            <div class="jion_con_item fb-float-left fb-transition">
+                <div class="jion_con_item_zone">
+                    <div class="jion_item_title">{$r['title']}</div>
+                    <div class="jion_item_email">简历发送至：{$r['email']}</div>
+                    <div class="jion_item_name">{$r['name']}</div>
+                    <div class="jion_item_address">地点：{$r['address']}</div>
+                    <div class="jion_item_work">
+                        <p class="jion_item_work_title">岗位职责</p>
+                        <div class="jion_item_work_con">
+                            {$r['content']}
+                        </div>
+                    </div>
+                    <div class="jion_item_require">
+                        <p class="jion_item_require_title">职位要求</p>
+                        <div class="jion_item_require_con">
+                            {$r['require_con']}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {/loop}
+            {/pc}
+        </div>
+    </div>
+</div>
+{template "content","footer"}
+</body>
+</html>

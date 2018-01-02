@@ -1,0 +1,16 @@
+<style>
+.header_login{margin-left: 20px;margin-top: 30px;}
+.header_login_button{width: 120px;height: 40px;background: #ad996a;border-radius: 40px;text-align: center;line-height: 40px;color: #fff;cursor: pointer;}
+.header_login_button:hover{opacity: 1 !important;background: rgba(173,153,106,0.8);}
+.accout_img{width: 40px;height: 40px;border-radius: 50%;overflow: hidden;border:1px solid #ad996a;display: none;}
+.accout_img img{width: 100%;height: 100%;}
+</style>
+{if $_username}
+<!-- 已登录 -->
+<div class="accout_img opa_active" style="display:block;"><a href="{APP_PATH}index.php?m=member&siteid={$siteid}"><img src="{CSS_PATH}shituo/images/code.jpg" alt=""/></a></div>
+<!-- 已登录 -->
+{else}
+<!-- 未登录 -->
+<div class="header_login_button opa_active">登录账号</div>
+<!-- 未登录 -->
+{/if}

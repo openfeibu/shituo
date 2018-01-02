@@ -1,0 +1,144 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=7" />
+<title>PHPCMS演示站</title>
+<meta name="keywords" content="PHPCMS演示站">
+<meta name="description" content="PHPCMS演示站">
+<link href="http://homestead.app/shituo/statics/css/reset.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="http://homestead.app/shituo/statics/js/jquery.min.js"></script>
+<style type="text/css">
+body {background: url(http://homestead.app/shituo/statics/images/v9/about_bg.png) repeat-x;}
+#header{ height:94px;}
+#header .logo{ padding:0 100px 0 20px;float:left;}
+.log{line-height:24px; height:24px;float:right; font-size:12px}
+.log{color:#c7c5c5; margin-top:40px}
+.log a{color:#6f6f6f;text-decoration: none;}
+.log a:hover{text-decoration: underline;}
+#header .content{width:880px; margin:auto; height:60px;padding:10px 0 0 0}
+#content{width:920px; margin:auto; padding:14px 0 0 0}
+.left-nav{width:210px; height:399px; padding-top:10px}
+.left-nav h1,.left-nav .content li,.left-nav .content li.cur a,.left-nav .bottom{background: url(http://homestead.app/shituo/statics/images/v9/about_left.png) no-repeat right top}
+.left-nav h1{display:block; height:40px; text-indent:-999px; overflow:hidden}
+.left-nav .content{background: url(http://homestead.app/shituo/statics/images/v9/about_left_bg.png) repeat-y right top; padding-left:44px}
+.left-nav .content li{background-position: right -102px; display:block; height:30px; line-height:30px; font-size:14px}
+.left-nav .content li a{display:block; height:25px; line-height:25px; padding-left:14px; color:#6f6f6f}
+.left-nav .content li.cur a{background-position: left -72px;  font-weight:700; color:#0d4b9b}
+.left-nav .bottom{background-position: right -168px; height:216px}
+.col-auto{ padding:0 25px}
+.col-auto .title{font-size:25px;padding:5px 0 0;background: url(http://homestead.app/shituo/statics/images/uline.gif) repeat-x left bottom; margin-bottom:15px}
+.col-auto .content p{ margin-bottom:15px; font-size:14px; line-height:25px; color:#6f6f6f}
+.footer{color:#666; line-height:24px;width:920px; margin:auto; text-align:center; padding:12px 0; margin-top:52px; border-top:1px solid #e5e5e5}
+.footer p.info a{color:#666;}
+</style>
+</head>
+<body>
+<div id="header">
+	<div class="content">
+	<div class="logo"><img src="http://homestead.app/shituo/statics/images/v9/logo.jpg" height="60" /></div>
+    <span class="rt log"><a href="http://homestead.app/shituo">首页</a> | <a href="http://homestead.app/shituo/index.php?m=member&c=index&a=login">登录</a> | <a href="http://homestead.app/shituo/index.php?m=member&c=index&a=register">注册</a></span>
+    </div>
+</div><div id="content">
+	<div class="col-left left-nav">
+    	<h1>关于我们</h1>
+    	<ul class="content">
+        	                <li><a href="http://homestead.app/shituo#">货物跟踪</a></li>
+			                <li><a href="http://homestead.app/shituo/html/express_service/express_price/">快件资费</a></li>
+			                <li class="cur"><a href="http://homestead.app/shituo/html/express_service/express_notice/">寄件注意事项</a></li>
+			        </ul>
+        <div class="bottom"></div>
+    </div>
+  <div class="col-auto">
+    	<img src="http://homestead.app/shituo/statics/images/v9/about_ad.png" width="659" height="171" />
+    	<h1 class="title"></h1>
+        <div class="content">
+        	            </div>
+    </div>
+ </div>
+<!--登录框-->
+<div class="main-panel fb-z1000">
+    <form action="">
+        <ul class="main-list">
+            <div class="panel-logo"><img src="http://homestead.app/shituo/statics/css/shituo/images/logo1.png" alt=""></div>
+            <div>
+                <li>
+                    <div class="text-title hidden-xs">入仓代码</div>
+                    <input type="text" name="name" placeholder="请输入入仓代码"></li>
+                <li>
+                    <div class="text-title hidden-xs">密码</div>
+                    <input type="password" name="password" placeholder="请输入密码"></li>
+            </div>
+        </ul>
+        <div class="main-function ">
+            <div >
+                <button class="fb-buttonFill opa_active">登录</button>
+                <span>没有入仓代码？请联系客服</span>
+            </div>
+        </div>
+    </form>
+</div>
+<div class="footer">
+    <div class="w1200">
+        <div class="footer_info fb-float-left ">
+            <div class="footer_info_title">联系我们</div>
+            <div class="footer_info_desc">我们可以为您提供最优惠的价格和VIP的服务，让您完全满意。欢迎您随时询价！</div>
+            <div class="footer_info_item_box">
+                <div class="footer_info_item footer_info_item_map">广州市白云区广园中路218号</div>
+                <div class="footer_info_item footer_info_item_photo">020-36483303</div>
+                <div class="footer_info_item footer_info_item_email">info@stockcargo.cn</div>
+            </div>
+            <div class="footer_info_code">
+                <img src="http://homestead.app/shituo/statics/css/shituo/images/code.jpg" alt=""/>
+                <p>微信扫码关注公众号</p>
+            </div>
+        </div>
+        <div class="mess_zone fb-float-right">
+            <form action="">
+                <div class="mess_title">
+                    <div class="mess_name fb-float-left">
+                        <input type="text" name="name" placeholder="您的称呼">
+                    </div>
+                    <div class="mess_phone fb-float-right">
+                        <input type="text" name="phone" placeholder="联系方式">
+                    </div>
+                </div>
+                <div class="mess_con">
+                    <textarea rows="6" name="content" placeholder="留言信息"></textarea>
+                </div>
+                <div class="mess_button">
+                    <input type="submit" value="留言" class="opa_active">
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="fb-extra-power fb-transition">
+        <div class="fb-extra-power-item ">
+            <a target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=3450834228&site=qq&menu=yes" class="fb-float-right">
+                客服001
+                <div class="fb-extra-power-item-qq fb-float-right"></div>
+            </a>
+        </div>
+        <div class="fb-extra-power-item ">
+            <a target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=482328361&site=qq&menu=yes" class="fb-float-right">
+                客服002
+                <div class="fb-extra-power-item-qq fb-float-right"></div>
+            </a>
+        </div>
+        <div class="fb-extra-power-item ">
+            <a class="fb-float-right">
+                020-1234567
+                <div class="fb-extra-power-item-phone fb-float-right"></div>
+            </a>
+        </div>
+        <div class="fb-extra-power-item fb-goTop" onclick="$('body,html').animate({scrollTop:0})">
+            <a class="fb-float-right">
+                TOP
+                <div class="fb-extra-power-item-top fb-float-right"></div>
+            </a>
+        </div>
+    </div>
+
+</div>
+</body>
+</html>

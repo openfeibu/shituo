@@ -1,0 +1,48 @@
+{template "content","header"}
+    <div class="main pdt">
+        <div class="page_banner fb-position-relative" >
+            <img class="fb-position-absolute" src="{$CATEGORYS[13][image]}" alt="">
+        </div>
+        <div class="main_content" id="main_content">
+            <div class="news_con fb-clearfix">
+                <div class="news_tab w1200" id="news_tab">
+					{pc:content action="category" catid="$parentid" siteid="$siteid" order="listorder ASC"}
+					{loop $data $r}
+					<div class="news_tab_item fb-inlineBlock {if $catid == $r['catid']}active{/if}" id="news_tab_item"><a href="{$r[url]}#main_content">{$r[catname]}</a></div>
+					{/loop}
+					{/pc}
+                </div>
+                <div class="news_list_img w1200 fb-clearfix">
+					{pc:content action="position" posid="10" catid="$catid" order="id DESC" num="6"  return="pdata"}
+					{php $i = 0}
+					{loop $pdata $n $p}
+					{php $i++}
+						{php $id = $p[id];$cid = $p[catid];}
+						{php $where = "id=$id"}
+					    {pc:content action="lists" catid="$cid" where="$where" moreinfo="1" num="1" return="cdata"}
+					    <!--使用where属性指定id，使用moreinfo属性指定获取副表信息-->
+					    {loop $cdata $c}
+	                    <div class="news_list_img_item {if $i == 1}active{/if} fb-transition">
+	                        <a href="{$c['url']}">
+	                            <div class="img"><img src="{$c['thumb']}" alt=""></div>
+	                            <div class="text ">
+	                                <div class="title_n">{$c['title']}</div>
+	                                <div class="title_desc">{str_cut(strip_tags($c['content']),300,"")}...</div>
+	                                <div class="date">{date('Y-m-d',$c[inputtime])}</div>
+	                            </div>
+	                        </a>
+	                    </div>
+						{/loop}
+						{/pc}
+					{/loop}
+					{/pc}
+                </div>
+				<div class="contain_ajaxhomelist" >
+                	{template "content","list_ajax"}
+				</div>
+            </div>
+        </div>
+    </div>
+    {template "content","footer"}
+</body>
+</html>

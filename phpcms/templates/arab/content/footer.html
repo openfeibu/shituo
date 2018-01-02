@@ -1,0 +1,120 @@
+<!--登录框-->
+<div class="main-panel fb-z1000">
+    <form action="">
+        <ul class="main-list">
+            <div class="panel-logo"><img src="{CSS_PATH}shituo/images/logo1.png" alt=""></div>
+            <div>
+                <li>
+                    <div class="text-title hidden-xs">{SL('stock_code')}</div>
+                    <input type="text" name="username" id="username" placeholder="{SL('enter_stock_code')}"></li>
+                <li>
+                    <div class="text-title hidden-xs">{SL('password')}</div>
+                    <input type="password" name="password" id="password" placeholder="{SL('enter_password')}"></li>
+                    <input type="hidden" name="cookietime" id="cookietime" value="2592000"/>
+            </div>
+        </ul>
+        <div class="main-function ">
+            <div >
+                <button class="fb-buttonFill opa_active">{Sl('login2')}</button>
+                <span>{SL('no_stock_code')}</span>
+            </div>
+        </div>
+    </form>
+</div>
+<div class="footer">
+    <div class="w1200 fb-clearfix">
+        <div class="footer_info fb-float-left ">
+            {pc:get sql="SELECT * FROM shituo_page where catid=37"}
+            {loop $data $key $val}
+            <div class="footer_info_title"><?php echo $val[$GLOBALS['prefix']."title"];?></div>
+            <?php echo $val[$GLOBALS['prefix']."content"];?>
+            {/loop}
+            {/pc}
+        </div>
+        <div class="mess_zone fb-float-right">
+            <form action="{APP_PATH}index.php?m=guestbook&c=index&a=register&siteid={$siteid}" >
+                <div class="mess_title">
+                    <div class="mess_name fb-float-left">
+                        <input type="text" name="name" id="name" placeholder="{SL('leave_name')}" onkeyup="value="/oblog/value.replace(/[^\u4E00-\u9FA5]/g,'')>
+                    </div>
+                    <div class="mess_phone fb-float-right">
+                        <input type="text" name="phone" id="phone" placeholder="{SL('leave_phone')}">
+                    </div>
+                </div>
+                <div class="mess_con">
+                    <textarea rows="6" name="content" id="content" placeholder="{SL('leave_content')}"></textarea>
+                </div>
+                <div class="mess_button">
+                    <input type="submit" value="{SL('leave_word')}" class="opa_active">
+                </div>
+            </form>
+        </div>
+
+    </div>
+    <div class="support fb-clearfix"><span>CopyRight ©广州世拓货运代理有限公司</span>   <span>粤ICP备17162719号</span>  <span>技术支持：<a href="http://www.feibu.info" style="">广州飞步信息科技有限公司</a ></span></div>
+    <div class="fb-extra-power fb-transition">
+        {pc:content action="category" catid="47" siteid="$siteid" order="listorder ASC"}
+        {loop $data $r}
+        <div class="fb-extra-power-item ">
+            <a target="_blank" href="{$r[url]}" class="fb-float-right">
+                <?php echo  $r[$GLOBALS['prefix']."catname"] ?>
+                <div class="fb-extra-power-item-qq fb-float-right"></div>
+            </a>
+        </div>
+        {/loop}
+        {/pc}
+        <div class="fb-extra-power-item ">
+            <a class="fb-float-right">
+                <?php echo $CATEGORYS[50]['description'];?>
+                <div class="fb-extra-power-item-phone fb-float-right"></div>
+            </a>
+        </div>
+        <div class="fb-extra-power-item fb-goTop" onclick="$('body,html').animate({scrollTop:0})">
+            <a class="fb-float-right">
+                TOP
+                <div class="fb-extra-power-item-top fb-float-right"></div>
+            </a>
+        </div>
+    </div>
+
+</div>
+<script>
+$fb(".mess_zone form").formValidator([
+        {
+            name:'name',
+            rules:'required',
+            display:'姓名不可为空'
+        },
+        {
+            name:'phone',
+            rules:'required',
+            display:'联系方式不可为空'
+        },
+        {
+            name:'content',
+            rules:'required',
+            minLength:15,
+            mindisplay:'留言不可小于15个字符',
+            display:'留言不可为空'
+        },
+    ],function(){
+        $fb.loading({
+            content:"正在留言..."
+        })
+        var name = $("#name").val();
+		var content  = $("#content").val();
+		var phone = $("#phone").val();
+        var url = $(".mess_zone form").attr('action');
+		$.post(url, 'name='+name+'&phone='+phone+'&content='+content+'&dosubmit=1', function(data){
+            $fb.closeLoading();
+            if(data.code == 1){
+                $fb.fbNews({"type":"success","content":data.message});
+            }else{
+                $fb.fbNews({"type":"warning","content":data.message});
+            }
+        }, "json");
+        return false;
+    })
+</script>
+</body>
+</html>

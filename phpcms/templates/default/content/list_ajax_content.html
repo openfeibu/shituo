@@ -1,0 +1,12 @@
+{pc:content action="lists" catid="$catid" order="id DESC" page="$page" moreinfo="1" num="6"}
+{loop $data $n $r}
+<div class="news_list_text_item fb-float-left">
+    <div class="news_list_text_item_box fb-transition">
+        <a href="{$r['url']}">
+            <div class="date">{date('Y-m-d',$r[inputtime])}</div>
+            <div class="content"><?php echo $r[$GLOBALS['prefix']."title"];?></div>
+        </a>
+    </div>
+</div>
+{/loop}
+{/pc}

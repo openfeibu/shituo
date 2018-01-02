@@ -1,0 +1,103 @@
+{template "content","header"}
+<div class="main pdt">
+    <div class="page_banner fb-position-relative">
+        <img class="fb-position-absolute" src="{$CATEGORYS[6][image]}" alt="">
+    </div>
+    <div class="main_content">
+        <div class="service_con fb-clearfix">
+            <div class="ourAdvantage w1200">
+                <div class="title">
+                    <p class="fb-position-relative">{$CATEGORYS[7][catname]}</p>
+                    <span>{$CATEGORYS[7][description]}</span>
+                </div>
+                <div class="ourAdvantage_con fb-clearfix">
+                    {pc:get sql="SELECT content FROM shituo_page where catid=7"}
+            		{loop $data $key $val}
+            		{$val[content]}
+            		{/loop}
+            		{/pc}
+                </div>
+            </div>
+            <div class="ourProduct">
+                <div class="ourProduct_ky w1200">
+                    <div class="img fb-inlineBlock"><img src="{$CATEGORYS[9][image]}" alt=""></div>
+                    <div class="text fb-inlineBlock">
+                        <div class="title_n">{$CATEGORYS[9][catname]}</div>
+                        <div class="title_e">{$CATEGORYS[9][other_catname]}</div>
+                        <div class="desc">
+                            {pc:get sql="SELECT content FROM shituo_page where catid=9"}
+                    		{loop $data $key $val}
+                    		{$val[content]}
+                    		{/loop}
+                    		{/pc}
+                        </div>
+                    </div>
+                </div>
+                <div class="ourProduct_hy w1200">
+                    <div class="text fb-inlineBlock">
+                        <div class="title_n">{$CATEGORYS[10][catname]}</div>
+                        <div class="title_e">{$CATEGORYS[10][other_catname]}</div>
+                        <div class="desc">
+                            {pc:get sql="SELECT content FROM shituo_page where catid=10"}
+                    		{loop $data $key $val}
+                    		{$val[content]}
+                    		{/loop}
+                    		{/pc}
+                        </div>
+                    </div>
+                    <div class="img fb-inlineBlock"><img src="{$CATEGORYS[10][image]}" alt=""></div>
+                </div>
+            </div>
+            <div class="sevice_info w1200 fb-clearfix">
+                <div class="sevice_info_item fb-transition">
+                    <div class="sevice_info_item_box fb-transition">
+                        <div class="title_n fb-position-relative fb-inlineBlock fb-transition"><p>{$CATEGORYS[11][catname]}</p></div>
+                        <div class="content fb-inlineBlock">
+                            {pc:get sql="SELECT content FROM shituo_page where catid=11"}
+                    		{loop $data $key $val}
+                    		{$val[content]}
+                    		{/loop}
+                    		{/pc}
+                        </div>
+                    </div>
+                </div>
+                <div class="sevice_info_item  fb-transition">
+                    <div class="sevice_info_item_box fb-transition">
+                        <div class="title_n fb-position-relative fb-inlineBlock fb-transition"><p>{$CATEGORYS[12][catname]}</p></div>
+                        <div class="content fb-inlineBlock ">
+                            {pc:get sql="SELECT content FROM shituo_page where catid=12"}
+                    		{loop $data $key $val}
+                    		{$val[content]}
+                    		{/loop}
+                    		{/pc}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="logistics_line w1200">
+                <div class="title_n">物流专线</div>
+                <div class="title_desc">{$CATEGORYS[19][description]}</div>
+                <div class="logistics_line_con">
+                    <ul class=" fb-clearfix">
+                        {pc:content action="category" catid="19" siteid="$siteid" order="listorder ASC"}
+                        {loop $data $r}
+                        <li>
+                            <a href="{$r[url]}">
+                                <div class="img"><img src="{$r[image]}" alt="{$r[catname]}"></div>
+                                <div class="text">{$r[catname]}</div>
+                            </a>
+                        </li>
+                        {/loop}
+                        {/pc}
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{template "content","footer"}
+</body>
+<script>
+
+</script>
+</html>

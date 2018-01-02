@@ -1,0 +1,37 @@
+{template "content","header"}
+<div class="main pdt">
+    <div class="page_banner fb-position-relative">
+        <img class="fb-position-absolute" src="{$CATEGORYS[28][image]}" alt="">
+    </div>
+    <div class="main_content">
+        <div class="jion_con w1200 fb-clearfix">
+            {pc:content action="lists" catid="$catid" order="id ASC" moreinfo="1"}
+            {loop $data $n $r}
+            <div class="jion_con_item fb-float-left fb-transition">
+                <div class="jion_con_item_zone">
+                    <div class="jion_item_title"><?php echo  $r[$GLOBALS['prefix']."title"] ?></div>
+                    <div class="jion_item_email">{SL('email')}：{$r['email']}</div>
+                    <div class="jion_item_name"><?php echo  $r[$GLOBALS['prefix']."name"] ?></div>
+                    <div class="jion_item_address">{SL('address')}：<?php echo  $r[$GLOBALS['prefix']."address"] ?></div>
+                    <div class="jion_item_work">
+                        <p class="jion_item_work_title">{SL('responsibility')}</p>
+                        <div class="jion_item_work_con">
+                            <?php echo  $r[$GLOBALS['prefix']."content"] ?>
+                        </div>
+                    </div>
+                    <div class="jion_item_require">
+                        <p class="jion_item_require_title">{SL('job_requirements')}</p>
+                        <div class="jion_item_require_con">
+                            <?php echo  $r[$GLOBALS['prefix']."require_con"] ?>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {/loop}
+            {/pc}
+        </div>
+    </div>
+</div>
+{template "content","footer"}
+</body>
+</html>

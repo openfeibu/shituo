@@ -1,0 +1,82 @@
+<!--登录框-->
+<div class="main-panel fb-z1000">
+    <form action="">
+        <ul class="main-list">
+            <div class="panel-logo"><img src="{CSS_PATH}shituo/images/logo1.png" alt=""></div>
+            <div>
+                <li>
+                    <div class="text-title hidden-xs">入仓代码</div>
+                    <input type="text" name="name" id="username" placeholder="请输入入仓代码"></li>
+                <li>
+                    <div class="text-title hidden-xs">密码</div>
+                    <input type="password" name="password" id="password" placeholder="请输入密码"></li>
+                    <input type="hidden" name="cookietime" id="cookietime" value="2592000"/>
+            </div>
+        </ul>
+        <div class="main-function ">
+            <div >
+                <button class="fb-buttonFill opa_active">登录</button>
+                <span>没有入仓代码？请联系客服</span>
+            </div>
+        </div>
+    </form>
+</div>
+<div class="footer">
+    <div class="w1200">
+        <div class="footer_info fb-float-left ">
+            <div class="footer_info_title">{$CATEGORYS[37][catname]}</div>
+            {pc:get sql="SELECT content FROM shituo_page where catid=37"}
+            {loop $data $key $val}
+            {$val[content]}
+            {/loop}
+            {/pc}
+        </div>
+        <div class="mess_zone fb-float-right">
+            <form action="">
+                <div class="mess_title">
+                    <div class="mess_name fb-float-left">
+                        <input type="text" name="name" placeholder="您的称呼">
+                    </div>
+                    <div class="mess_phone fb-float-right">
+                        <input type="text" name="phone" placeholder="联系方式">
+                    </div>
+                </div>
+                <div class="mess_con">
+                    <textarea rows="6" name="content" placeholder="留言信息"></textarea>
+                </div>
+                <div class="mess_button">
+                    <input type="submit" value="留言" class="opa_active">
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="fb-extra-power fb-transition">
+        <div class="fb-extra-power-item ">
+            <a target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=3450834228&site=qq&menu=yes" class="fb-float-right">
+                客服001
+                <div class="fb-extra-power-item-qq fb-float-right"></div>
+            </a>
+        </div>
+        <div class="fb-extra-power-item ">
+            <a target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=482328361&site=qq&menu=yes" class="fb-float-right">
+                客服002
+                <div class="fb-extra-power-item-qq fb-float-right"></div>
+            </a>
+        </div>
+        <div class="fb-extra-power-item ">
+            <a class="fb-float-right">
+                020-1234567
+                <div class="fb-extra-power-item-phone fb-float-right"></div>
+            </a>
+        </div>
+        <div class="fb-extra-power-item fb-goTop" onclick="$('body,html').animate({scrollTop:0})">
+            <a class="fb-float-right">
+                TOP
+                <div class="fb-extra-power-item-top fb-float-right"></div>
+            </a>
+        </div>
+    </div>
+
+</div>
+</body>
+</html>

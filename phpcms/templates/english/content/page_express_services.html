@@ -1,0 +1,30 @@
+{pc:content action="category" siteid="1" catid="$catid" num="1"}
+{loop $data $n $r}
+
+
+{php header('location:'.$r['url'].'');}
+
+{/loop}{/pc}
+{template "content","header"}
+    <div class="main pdt">
+        <div class="page_banner fb-position-relative" >
+            <img class="fb-position-absolute" src="{$CATEGORYS[18][image]}" alt="">
+        </div>
+        <div class="main_content" id="main_content">
+            <div class="line_con fb-clearfix w1200">
+                <div class="line_tab fb-float-left">
+                    {template "content","express_left"}
+                </div>
+                <div class="line_content fb-float-right">
+                    <div class="line_content_title">{$title}</div>
+                    <div class="line_content_text">
+                        {$content}
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+{template "content","footer"}
+</body>
+</html>
