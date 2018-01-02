@@ -308,10 +308,10 @@ class index {
 		$default_style = $sitelist[$siteid]['default_style'];
 		$is_active = 1;
 		$logistics_data = array();
-		if($_POST['dosubmit'])
+		if($_REQUEST['search_num'])
 		{
 			$db = pc_base::load_model("waybill_model");
-			$number = $_POST['search_num'];
+			$number = $_REQUEST['search_num'];
 			$waybill_data = $db->get_one("number = '".$number."'");
 			if($waybill_data)
 			{

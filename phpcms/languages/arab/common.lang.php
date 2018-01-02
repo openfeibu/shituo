@@ -42,4 +42,13 @@ $LANG['contact_us'] = 'الهاتف ';
 $LANG['more'] = 'الهاتف ';
 $LANG['index_new'] = 'الأخبار ';
 $LANG['newest'] = 'أحدث ' ;
+$LANG['information'] = 'معلومات الحساب ';
+$LANG['account'] = 'رقم الحساب ';
+$LANG['nickname'] = 'لقب ';
+$LANG['modify_password_suggest'] = 'أقترح عليك   تغيير كلمة السر   العادية ';
+$LANG['modify'] = 'في كثير من الأحيان ';
+$LANG['my_express'] = 'لي   تسجيل ';
+$LANG['express_number'] = 'الشحن رقم ';
+$LANG['no_express'] = 'لم يكن لديك   تسجيل   تسجيل ';
+$LANG['phone'] = 'الهاتف ';
 ?>

@@ -105,8 +105,24 @@
 					    {pc:content action="lists" catid="$cid" where="$where" moreinfo="1" num="1" return="cdata"}
 					    <!--使用where属性指定id，使用moreinfo属性指定获取副表信息-->
 					    {loop $cdata $c}
+                        {if $i%2 == 0}
                         <div class="homeNews_item fb-float-left">
-                            <a href="">
+                            <a href="{$c['url']}">
+
+                                <div class="text fb-transition">
+                                    <div class="n_title fb-overflow-2"><?php echo $c[$GLOBALS['prefix']."title"];?></div>
+                                    <div class="n_content fb-overflow-3"><?php echo str_cut(strip_tags($c[$GLOBALS['prefix']."content"]),300,"...");?>
+                                    </div>
+                                    <div class="n_date">{date('Y-m-d',$c[inputtime])}</div>
+                                </div>
+                                <div class="img">
+                                    <img src="{$c['thumb']}" alt="">
+                                </div>
+                            </a>
+                        </div>
+                        {else}
+                        <div class="homeNews_item fb-float-left">
+                            <a href="{$c['url']}">
                                 <div class="img">
                                     <img src="{$c['thumb']}" alt="">
                                 </div>
@@ -118,6 +134,7 @@
                                 </div>
                             </a>
                         </div>
+                        {/if}
 						{/loop}
 						{/pc}
 					{/loop}
@@ -132,80 +149,18 @@
     <div class="fb-figureCarousel fb-position-relative branchOffice w1200">
         <div class="fb-figureCarousel-boxOverflow ">
             <div class="fb-figureCarousel-box fb-position-relative">
+                {pc:content action="lists" catid="55" order="id ASC" moreinfo="1"}
+                {loop $data $n $r}
                 <div class="fb-figureCarousel-item fb-float-left branchOffice_item">
                     <div class="n_text">
-                        <div class="n_title">广州公司</div>
-                        <div class="n_map">地址：广州市白云区广园中路218号</div>
-                        <div class="n_phone">电话：020-36483303</div>
+                        <div class="n_title"><?php echo $r[$GLOBALS['prefix']."title"];?></div>
+                        <div class="n_map">地址：<?php echo $r[$GLOBALS['prefix']."address"];?></div>
+                        <div class="n_phone">电话：<?php echo $r[$GLOBALS['prefix']."phone"];?></div>
                     </div>
-                    <div class="n_img"><img src="{CSS_PATH}shituo/images/branchOffice01.png" alt=""></div>
+                    <div class="n_img"><img src="{$r['thumb']}" alt=""></div>
                 </div>
-                <div class="fb-figureCarousel-item fb-float-left branchOffice_item">
-                    <div class="n_text">
-                        <div class="n_title">迪拜公司</div>
-                        <div class="n_map">地址：Sulatan Ahmed Lootah Building Al Ghurair Center
-                            Mezzanine No2
-                        </div>
-                        <div class="n_phone">电话：00971-551152977 、00971-551855345</div>
-                    </div>
-                    <div class="n_img"><img src="{CSS_PATH}shituo/images/branchOffice02.png" alt=""></div>
-                </div>
-                <div class="fb-figureCarousel-item fb-float-left branchOffice_item">
-                    <div class="n_text">
-                        <div class="n_title">沙特公司</div>
-                        <div class="n_map">地址：Al Manar Riyadh Saudi Arabia</div>
-                        <div class="n_phone">电话：00971-588759471</div>
-                    </div>
-                    <div class="n_img"><img src="{CSS_PATH}shituo/images/branchOffice03.png" alt=""></div>
-                </div>
-                <div class="fb-figureCarousel-item fb-float-left branchOffice_item">
-                    <div class="n_text">
-                        <div class="n_title">沙特公司</div>
-                        <div class="n_map">地址：Al Manar Riyadh Saudi Arabia</div>
-                        <div class="n_phone">电话：00971-588759471</div>
-                    </div>
-                    <div class="n_img"><img src="{CSS_PATH}shituo/images/branchOffice03.png" alt=""></div>
-                </div>
-                <div class="fb-figureCarousel-item fb-float-left branchOffice_item">
-                    <div class="n_text">
-                        <div class="n_title">沙特公司</div>
-                        <div class="n_map">地址：Al Manar Riyadh Saudi Arabia</div>
-                        <div class="n_phone">电话：00971-588759471</div>
-                    </div>
-                    <div class="n_img"><img src="{CSS_PATH}shituo/images/branchOffice03.png" alt=""></div>
-                </div>
-                <div class="fb-figureCarousel-item fb-float-left branchOffice_item">
-                    <div class="n_text">
-                        <div class="n_title">沙特公司</div>
-                        <div class="n_map">地址：Al Manar Riyadh Saudi Arabia</div>
-                        <div class="n_phone">电话：00971-588759471</div>
-                    </div>
-                    <div class="n_img"><img src="{CSS_PATH}shituo/images/branchOffice03.png" alt=""></div>
-                </div>
-                <div class="fb-figureCarousel-item fb-float-left branchOffice_item">
-                    <div class="n_text">
-                        <div class="n_title">沙特公司</div>
-                        <div class="n_map">地址：Al Manar Riyadh Saudi Arabia</div>
-                        <div class="n_phone">电话：00971-588759471</div>
-                    </div>
-                    <div class="n_img"><img src="{CSS_PATH}shituo/images/branchOffice03.png" alt=""></div>
-                </div>
-                <div class="fb-figureCarousel-item fb-float-left branchOffice_item">
-                    <div class="n_text">
-                        <div class="n_title">沙特公司</div>
-                        <div class="n_map">地址：Al Manar Riyadh Saudi Arabia</div>
-                        <div class="n_phone">电话：00971-588759471</div>
-                    </div>
-                    <div class="n_img"><img src="{CSS_PATH}shituo/images/branchOffice03.png" alt=""></div>
-                </div>
-                <div class="fb-figureCarousel-item fb-float-left branchOffice_item">
-                    <div class="n_text">
-                        <div class="n_title">沙特公司</div>
-                        <div class="n_map">地址：Al Manar Riyadh Saudi Arabia</div>
-                        <div class="n_phone">电话：00971-588759471</div>
-                    </div>
-                    <div class="n_img"><img src="{CSS_PATH}shituo/images/branchOffice03.png" alt=""></div>
-                </div>
+                {/loop}
+                {/pc}
 
             </div>
         </div>

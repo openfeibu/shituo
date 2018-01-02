@@ -42,4 +42,13 @@ $LANG['contact_us'] = 'Contact us';
 $LANG['more'] = 'MORE';
 $LANG['index_new'] = '新闻动态';
 $LANG['newest'] = 'NEWEST' ;
+$LANG['information'] = 'INFORMATION';
+$LANG['account'] = 'Account';
+$LANG['nickname'] = 'Nickname';
+$LANG['modify_password_suggest'] = 'It is recommended to regularly modify the password to ensure the security of the account.';
+$LANG['modify'] = 'Modify';
+$LANG['my_express'] = 'My express';
+$LANG['express_number'] = 'Express Number';
+$LANG['no_express'] = "You don't have an express yet";
+$LANG['phone'] = 'Phone';
 ?>

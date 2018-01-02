@@ -42,4 +42,13 @@ $LANG['contact_us'] = '客服电话';
 $LANG['more'] = '更多';
 $LANG['index_new'] = '新闻动态';
 $LANG['newest'] = '最新' ;
+$LANG['information'] = '账号信息';
+$LANG['account'] = '账号';
+$LANG['nickname'] = '昵称';
+$LANG['modify_password_suggest'] = '建议您经常修改密码，以保证帐号更加安全。';
+$LANG['modify'] = '修改';
+$LANG['my_express'] = '我的快件';
+$LANG['express_number'] = '运单号';
+$LANG['no_express'] = '您还没有快件记录';
+$LANG['phone'] = '电话';
 ?>
