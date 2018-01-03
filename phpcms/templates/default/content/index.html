@@ -12,9 +12,13 @@
                 {/pc}
             </div>
             <div class="fb-banner-spot fb-position-absolute">
-                <div class="fb-spot-item fb-spot-item-active fb-inlineBlock"></div>
-                <div class="fb-spot-item fb-inlineBlock"></div>
-                <div class="fb-spot-item fb-inlineBlock"></div>
+                {php $i = 0}
+                {pc:content action="category" catid="51" siteid="$siteid" order="listorder ASC"}
+                {loop $data $r}
+                <div class="fb-spot-item {if $i == 0}fb-spot-item-active{/if} fb-inlineBlock"></div>
+                {php $i++}
+                {/loop}
+                {/pc}
             </div>
             <!--<div class="fb-banner-prev fb-position-absolute fb-transition"></div>-->
             <!--<div class="fb-banner-next fb-position-absolute fb-transition"></div>-->

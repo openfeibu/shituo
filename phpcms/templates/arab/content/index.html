@@ -12,9 +12,13 @@
                 {/pc}
             </div>
             <div class="fb-banner-spot fb-position-absolute">
-                <div class="fb-spot-item fb-spot-item-active fb-inlineBlock"></div>
-                <div class="fb-spot-item fb-inlineBlock"></div>
-                <div class="fb-spot-item fb-inlineBlock"></div>
+                {php $i = 0}
+                {pc:content action="category" catid="51" siteid="$siteid" order="listorder ASC"}
+                {loop $data $r}
+                <div class="fb-spot-item {if $i == 0}fb-spot-item-active{/if} fb-inlineBlock"></div>
+                {php $i++}
+                {/loop}
+                {/pc}
             </div>
             <!--<div class="fb-banner-prev fb-position-absolute fb-transition"></div>-->
             <!--<div class="fb-banner-next fb-position-absolute fb-transition"></div>-->
@@ -154,8 +158,8 @@
                 <div class="fb-figureCarousel-item fb-float-left branchOffice_item">
                     <div class="n_text">
                         <div class="n_title"><?php echo $r[$GLOBALS['prefix']."title"];?></div>
-                        <div class="n_map">地址：<?php echo $r[$GLOBALS['prefix']."address"];?></div>
-                        <div class="n_phone">电话：<?php echo $r[$GLOBALS['prefix']."phone"];?></div>
+                        <div class="n_map">{SL('address')}：<?php echo $r[$GLOBALS['prefix']."address"];?></div>
+                        <div class="n_phone">{SL('phone')}：<?php echo $r[$GLOBALS['prefix']."phone"];?></div>
                     </div>
                     <div class="n_img"><img src="{$r['thumb']}" alt=""></div>
                 </div>
