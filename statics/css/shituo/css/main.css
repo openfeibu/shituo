@@ -267,7 +267,7 @@ box-shadow: 0px 0px 8px #adadad;/*opera或ie9*/ }
 .product_zone .product_ky .product_ky_img{width:550px;height: 412px;left: -500px;top:0;opacity: 0}
 .product_zone .product_ky .product_ky_img img{width:550px;height: 412px;}
 .product_zone .product_ky .product_ky_text{width:600px;right:-500px;top:60px;height: 400px;opacity: 0}
-.product_zone .product_ky .product_ky_text .p_title{font-weight: bold;margin-top:20px;height: 65px;line-height: 65px;font-size:32px;color: #ad996a;position: relative;}
+.product_zone .product_ky .product_ky_text .p_title{font-weight: bold;margin-top:20px;height: 65px;line-height: 65px;font-size:28px;color: #ad996a;position: relative;}
 .product_zone .product_ky .product_ky_text .p_title:after{content:"";width:20px;height: 2px;background:#ad996a;position: absolute;left: 0;bottom: 0}
 .product_zone .product_ky .product_ky_text .p_content{font-size:16px;color:#fff;line-height: 30px;padding-right: 245px;margin:15px 0;}
 .product_zone .product_ky .product_ky_text .p_more{font-size:14px;color:#fff;background: url("../images/p_more.png")no-repeat right center;padding-right: 40px;bottom: 100px;}
@@ -279,7 +279,7 @@ box-shadow: 0px 0px 8px #adadad;/*opera或ie9*/ }
 .product_zone .product_hy .product_hy_img{width:550px;height: 412px;right: -300px;top:0;opacity: 0}
 .product_zone .product_hy .product_hy_img img{width:550px;height: 412px;}
 .product_zone .product_hy .product_hy_text{width:600px;left:-300px;top:60px;height: 400px;opacity: 0;z-index:3;}
-.product_zone .product_hy .product_hy_text .p_title{font-weight: bold;margin-top:20px;height: 65px;line-height: 65px;font-size:32px;color: #ad996a;position: relative;}
+.product_zone .product_hy .product_hy_text .p_title{font-weight: bold;margin-top:20px;height: 65px;line-height: 65px;font-size:28px;color: #ad996a;position: relative;}
 .product_zone .product_hy .product_hy_text .p_title:after{content:"";width:20px;height: 2px;background:#ad996a;position: absolute;left: 0;bottom: 0}
 .product_zone .product_hy .product_hy_text .p_content{font-size:16px;color:#fff;line-height: 30px;padding-right: 245px;margin:15px 0;}
 .product_zone .product_hy .product_hy_text .p_more{font-size:14px;color:#fff;background: url("../images/p_more.png")no-repeat right center;padding-right: 40px;bottom: 100px;}
