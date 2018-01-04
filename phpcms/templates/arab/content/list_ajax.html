@@ -4,7 +4,7 @@
     <div class="news_list_text_item fb-float-left">
         <div class="news_list_text_item_box fb-transition">
             <a href="{$r['url']}">
-                <div class="date">{date('Y-m-d',$r[inputtime])}</div>
+                <div class="date" style="unicode-bidi:embed !important;">{date('d-m-Y',$r[inputtime])}</div>
                 <div class="content"><?php echo $r[$GLOBALS['prefix']."title"];?></div>
             </a>
         </div>

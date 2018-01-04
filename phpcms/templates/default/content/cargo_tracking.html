@@ -41,6 +41,18 @@
                                 {/if}
 
                             </div>
+							{elseif $_POST['search_num']}
+							 <div class="line_search_text_title">{SL('number')}：{$_POST['search_num']}</div>
+                            <div class=" fb-position-relative" style="text-align:center;font-size:16px;line-height:60px;">
+                              {SL('no_active')}
+
+                            </div>
+							
+							{else}
+							
+                            <div class=" fb-position-relative" style="text-align:center;font-size:16px;line-height:60px;">
+							  {SL('not_querying')}
+                            </div>
                             {/if}
                     </div>
                 </div>

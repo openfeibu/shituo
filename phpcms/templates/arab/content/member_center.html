@@ -14,11 +14,12 @@
                 <div class="person_info_item fb-clearfix">
                     <label>{SL('account')}</label>
                     <span>{$_username}</span>
+					<div class="update update_exit"><a style="color:#e4b698" href="/index.php?m=member&c=index&a=logout">{SL('exit')}</a></div>
                 </div>
                 <div class="person_info_item fb-clearfix">
                     <label>{SL('nickname')}</label>
                     <span>{$memberinfo['nickname']}</span>
-                    <div class="update update_name">modify</div>
+                    <div class="update update_name">{SL('modify')}</div>
 
                 </div>
                 <div class="person_info_item fb-clearfix">
@@ -32,11 +33,11 @@
                 <div class="myDelivery_con fb-clearfix">
                     {if $waybill_data}
                     {loop $waybill_data $val}
-                    <div class="myDelivery_item fb-float-left fb-transition">
+                    <div class="myDelivery_item fb-float-right fb-transition">
                         <a href="index.php?m=content&c=index&a=cargo_tracking&catid=20&search_num={$val['number']}">
-                            <div class="n_title">{SL('express_number')}：{$val['number']}</div>
+                            <div class="n_title"  style="unicode-bidi:embed !important;">{SL('express_number')}：{$val['number']}</div>
                             <div class="n_con fb-overflow-2">{SL('newest')}：<?php echo $val['logistics_data'][$GLOBALS['prefix'].'content'];?></div>
-                            <div class="n_date">{date('Y-m-d H:i:s',$val['logistics_data'][addtime])}</div>
+                            <div class="n_date"  style="unicode-bidi:embed !important;">{date('s:i:H d-m-Y',$val['logistics_data'][addtime])}</div>
                         </a>
                     </div>
                     {/loop}

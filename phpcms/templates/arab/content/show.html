@@ -12,7 +12,7 @@
                     <div class="fb-article">
                         <div class="fb-article-title"><?php $key = $GLOBALS['prefix']."title"; echo $$key; ?></div>
                         <div class="fb-article-source">
-                            <div class="date fb-inlineBlock">{date('Y-m-d',time($inputtime))}</div>
+                            <div class="date fb-inlineBlock">{date('d-m-Y',time($inputtime))}</div>
                             <div class="source fb-inlineBlock">{SL('comeform')}：{$copyfrom}</div>
                         </div>
                         <div class="fb-article-content">
@@ -24,9 +24,15 @@
                     <div class="hot_box">
                         <div class="hot_title">{SL('hot_news')}</div>
 						{php $i=1}
-						{pc:content action="position" posid="18" catid="" order="id DESC" num="8" }
-						{loop $data $n $r}
-						<div class="hot_item fb-overflow-2"><a href="{$r['url']}">{$i}.<?php echo  $r[$GLOBALS['prefix']."title"] ?></a></div>
+						{pc:content action="position" posid="18" catid="" order="id DESC" num="8"  return="pdata"}
+						{loop $pdata $n $p}
+							{php $id = $p[id];$cid = $p[catid];}
+							{php $where = "id=$id"}
+							{pc:content action="lists" catid="$cid" where="$where" moreinfo="1" num="1" return="cdata"}
+							{loop $cdata $c}
+							<div class="hot_item fb-overflow-2"><a href="{$c['url']}">{$i}.<?php echo  $c[$GLOBALS['prefix']."title"] ?></a></div>
+							{/loop}
+							{/pc}
 						{php $i++}
 						{/loop}
 						{/pc}

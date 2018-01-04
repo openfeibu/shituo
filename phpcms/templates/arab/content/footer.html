@@ -3,7 +3,7 @@
     <form action="">
         <ul class="main-list">
             <div class="panel-logo"><img src="{CSS_PATH}shituo/images/logo1.png" alt=""></div>
-            <div>
+            <div class="fb-clearfix">
                 <li>
                     <div class="text-title hidden-xs">{SL('stock_code')}</div>
                     <input type="text" name="username" id="username" placeholder="{SL('enter_stock_code')}"></li>
@@ -51,7 +51,7 @@
         </div>
 
     </div>
-    <div class="support fb-clearfix"><span>CopyRight ©广州世拓货运代理有限公司</span>   <span>粤ICP备17162719号</span>  <span>技术支持：<a href="http://www.feibu.info" style="">广州飞步信息科技有限公司</a ></span></div>
+    <div class="support fb-clearfix"><span>CopyRight ©广州世拓货运代理有限公司</span>   <span>粤ICP备17162719号</span>  <span>技术支持：<a href="http://www.feibu.info" style="unicode-bidi:embed !important;">广州飞步信息科技有限公司</a ></span></div>
     <div class="fb-extra-power fb-transition">
         {pc:content action="category" catid="47" siteid="$siteid" order="listorder ASC"}
         {loop $data $r}
@@ -64,13 +64,13 @@
         {/loop}
         {/pc}
         <div class="fb-extra-power-item ">
-            <a class="fb-float-right">
+            <a class="fb-float-right" style="unicode-bidi:embed !important;">
                 <?php echo $CATEGORYS[50]['description'];?>
                 <div class="fb-extra-power-item-phone fb-float-right"></div>
             </a>
         </div>
         <div class="fb-extra-power-item fb-goTop" onclick="$('body,html').animate({scrollTop:0})">
-            <a class="fb-float-right">
+            <a class="fb-float-right" style="unicode-bidi:embed !important;">
                 TOP
                 <div class="fb-extra-power-item-top fb-float-right"></div>
             </a>
@@ -109,6 +109,7 @@ $fb(".mess_zone form").formValidator([
             $fb.closeLoading();
             if(data.code == 1){
                 $fb.fbNews({"type":"success","content":data.message});
+				$(".mess_zone form")[0].reset();
             }else{
                 $fb.fbNews({"type":"warning","content":data.message});
             }

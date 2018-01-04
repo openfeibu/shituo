@@ -49,3 +49,4 @@ $LANG['choose_database'] = '请选择数据存储表';
 $LANG['original'] = '原文';
 $LANG['author'] = '发表人';
 $LANG['no_comment'] = '暂无评论';
+

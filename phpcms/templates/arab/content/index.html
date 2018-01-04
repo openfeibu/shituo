@@ -27,7 +27,7 @@
         <div class="w1200 fb-position-absolute cargoTracking_box">
             <div class="cargoTracking">
                 <div class="cargoTracking_title"><?php echo $CATEGORYS[20][$GLOBALS['prefix']."catname"]; ?></div>
-                <form action="index.php?m=content&c=index&a=cargo_tracking&catid=20" style="text-align: right">
+                <form action="index.php?m=content&c=index&a=cargo_tracking&catid=20" method="post" target="_blank" style="text-align: right">
                     <div class="item">
 
                         <div class="search_form fb-inlineBlock">广州世拓</div>
@@ -40,12 +40,13 @@
 
                     </div>
                 </form>
-                <div class="customer_phone">{SL('contact_us')}：<span><?php echo $CATEGORYS[50]['description'];?></span></div>
+                <div class="customer_phone">{SL('contact_us')}：<span style="unicode-bidi:embed !important;"><?php echo $CATEGORYS[50]['description'];?></span></div>
             </div>
         </div>
     </div>
     <div class="product_zone w1200">
         <div class="product_ky fb-position-relative fb-transition">
+			<a href="{$CATEGORYS[19][url]}">
             <div class="product_ky_img fb-position-absolute fb-transition"><img src="{$CATEGORYS[9][image]}" alt=""></div>
             <div class="product_ky_text  fb-position-absolute fb-transition">
                 <div class="p_title"><?php echo $CATEGORYS[9][$GLOBALS['prefix']."catname"] ?></div>
@@ -56,10 +57,12 @@
                     {/loop}
                     {/pc}
                 </div>
-                <div class="p_more fb-position-absolute"><a href="{$CATEGORYS[19][url]}">{SL('more')}</a></div>
+                <div class="p_more fb-position-absolute">{SL('more')}</div>
             </div>
+			</a>
         </div>
         <div class="product_hy fb-position-relative fb-transition">
+			<a href="{$CATEGORYS[19][url]}">
             <div class="product_hy_text  fb-position-absolute fb-transition">
                 <div class="p_title"><?php echo $CATEGORYS[10][$GLOBALS['prefix']."catname"] ?></div>
                 <div class="p_content">
@@ -69,9 +72,10 @@
                     {/loop}
                     {/pc}
                 </div>
-                <div class="p_more fb-position-absolute"><a href="{$CATEGORYS[19][url]}">{SL('more')}</a></div>
+                <div class="p_more fb-position-absolute">{SL('more')}</div>
             </div>
             <div class="product_hy_img fb-position-absolute fb-transition"><img src="{$CATEGORYS[10][image]}" alt=""></div>
+			</a>
         </div>
     </div>
     <div class="showDate">
@@ -91,8 +95,8 @@
                     <span>NEWS INFORMATION</span>
                 </div>
                 <div class="homeNews_title_bottom fb-position-relative">
-                    <div class="page">
-                        <span>01</span>/02
+                    <div class="page" style="unicode-bidi:embed !important;">
+                        <span style="unicode-bidi:embed !important;">01</span>/02
                     </div>
                     <div class="homeNews_page_prev fb-position-absolute fb-transition"></div>
                     <div class="homeNews_page_next fb-position-absolute fb-transition"></div>
@@ -117,7 +121,7 @@
                                     <div class="n_title fb-overflow-2"><?php echo $c[$GLOBALS['prefix']."title"];?></div>
                                     <div class="n_content fb-overflow-3"><?php echo str_cut(strip_tags($c[$GLOBALS['prefix']."content"]),300,"...");?>
                                     </div>
-                                    <div class="n_date">{date('Y-m-d',$c[inputtime])}</div>
+                                    <div class="n_date" style="unicode-bidi:embed !important;">{date('d-m-Y',$c[inputtime])}</div>
                                 </div>
                                 <div class="img">
                                     <img src="{$c['thumb']}" alt="">

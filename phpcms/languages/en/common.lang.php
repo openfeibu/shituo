@@ -51,4 +51,9 @@ $LANG['my_express'] = 'My express';
 $LANG['express_number'] = 'Express Number';
 $LANG['no_express'] = "You don't have an express yet";
 $LANG['phone'] = 'Phone';
+$LANG['no_active'] = '';
+$LANG['no_active'] = 'The single number can not be detected for the time being';
+$LANG['not_querying'] = 'Please enter a single number for a query';
+$LANG['exit'] = 'logout';
+
 ?>

@@ -784,7 +784,8 @@ class index extends foreground {
 			param::set_cookie('_nickname', '');
 			param::set_cookie('cookietime', '');
 			$forward = isset($_GET['forward']) && trim($_GET['forward']) ? $_GET['forward'] : 'index.php?m=member&c=index&a=login';
-			showmessage(L('logout_success').$synlogoutstr, $forward);
+			header('Location: index.php');
+			//showmessage(L('logout_success').$synlogoutstr, $forward);
 		}
 	}
 

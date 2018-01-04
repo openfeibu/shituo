@@ -196,7 +196,7 @@ class ajax
             $arr['chexi'] = $member_modelinfo_arr['chexi'];
             $arr['nickname'] =iconv("gb2312", "UTF-8", $nickname);
             $arr['msg'] = iconv("gb2312", "UTF-8", $restr);//urlencode($synloginstr);
-            $arr['html'] = '<div class="accout_img opa_active" style="display:block;"><a href= "'.APP_PATH.'index.php?m=content&c=index&a=member_center&siteid='.$siteid.'"><img src="'.CSS_PATH.'shituo/images/code.jpg" alt=""/></a></div>';
+            $arr['html'] = '<div class="accout_img opa_active" style="display:block;"><a href= "'.APP_PATH.'index.php?m=content&c=index&a=member_center&siteid='.$siteid.'"><img src="'.CSS_PATH.'shituo/images/person.png" alt=""/></a></div>';
             echo json_encode($arr);
         } else {
             if (param::get_cookie('_userid')) {

@@ -51,4 +51,7 @@ $LANG['my_express'] = '我的快件';
 $LANG['express_number'] = '运单号';
 $LANG['no_express'] = '您还没有快件记录';
 $LANG['phone'] = '电话';
+$LANG['no_active'] = '该单号暂时查不到动态';
+$LANG['not_querying'] = '请输入单号进行查询';
+$LANG['exit'] = '注销';
 ?>

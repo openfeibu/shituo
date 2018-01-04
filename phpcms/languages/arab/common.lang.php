@@ -46,9 +46,12 @@ $LANG['information'] = 'معلومات الحساب ';
 $LANG['account'] = 'رقم الحساب ';
 $LANG['nickname'] = 'لقب ';
 $LANG['modify_password_suggest'] = 'أقترح عليك   تغيير كلمة السر   العادية ';
-$LANG['modify'] = 'في كثير من الأحيان ';
+$LANG['modify'] = 'تعديل';
 $LANG['my_express'] = 'لي   تسجيل ';
 $LANG['express_number'] = 'الشحن رقم ';
 $LANG['no_express'] = 'لم يكن لديك   تسجيل   تسجيل ';
 $LANG['phone'] = 'الهاتف ';
+$LANG['no_active'] = 'هذا   هاو   مؤقتا   لا يمكن معرفة   ديناميكية';
+$LANG['not_querying'] = 'يرجى إدخال   رقم   الاستعلام';
+$LANG['exit'] = 'شطب';
 ?>
