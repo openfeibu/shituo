@@ -93,7 +93,11 @@ input,
 .line_search_text .line_search_text_resule .line_search_text_resule_item,
 .line_search_text .line_search_text_resule .line_search_text_resule_item p,
 .line_search_text .line_search_text_resule .line_search_text_resule_item span,
-.line_search_text .line_search_text_resule .line_search_text_resule_item.first:after
+.line_search_text .line_search_text_resule .line_search_text_resule_item.first:after,
+.fb-article-title,
+.fb-article-source .date,
+.fb-article-source .source,
+.fb-article-content
 {direction: rtl !important; }
 a,
 h1,
@@ -290,7 +294,7 @@ box-shadow: 0px 0px 8px #adadad;/*opera或ie9*/ }
 .ourProduct .ourProduct_hy .text .desc{color: #555555;font-size: 16px;line-height: 24px;}
 
 .sevice_info{}
-.sevice_info_item{width: 480px;height: 300px;float: left;background: #fff;margin:75px 10px;padding:0 25px;cursor:pointer;}
+.sevice_info_item{width: 480px;height: 300px;float: left;background: #fff;margin:75px 35px;padding:0 25px;cursor:pointer;}
 .sevice_info_item .sevice_info_item_box{color: #555555;padding:0 25px;}
 .sevice_info_item:hover{background: #222222;}
 .sevice_info_item:hover  .sevice_info_item_box{background: #ad996a;color: #fff;margin-top: 25px;}

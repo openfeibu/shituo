@@ -35,6 +35,7 @@ $(function(){
 					$(".fb-mask").hide();
 					$(".header_login").html(data.html);
 					$fb.fbNews({"type":"success","content":'登录成功'});
+					window.location.href='/index.php?m=content&c=index&a=member_center&siteid=1';
                 }
                 else if(data==-1){ $fb.fbNews({"type":"warning","content":'用户不存在'});}
                 else if(data==-2){ $fb.fbNews({"type":"warning","content":'密码错误'});}
