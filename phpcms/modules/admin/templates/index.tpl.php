@@ -24,18 +24,18 @@ var pc_hash = '<?php echo $_SESSION['pc_hash']?>'
 <style type="text/css">
 
 /*样式隐藏*/
-/*phpsso 用户 界面 扩展 视频*/
+
 #_M2,#_M8,#_M1677,#_M6,#_M7,#_M9{display: none;}
-/*设置*/
+
 #_MP65,#_MP959,#_MP979,#_MP980,#_MP981,#_MP1093{display:none}
-/*模块*/
+
 #_MP1557,#_MP1535,#_MP1533,#__MP1520,#__MP1502,#__MP1571,#__MP902,#__MP909,#_MP1528,#_MP1520,#_MP1571,#_MP902,#_MP909,#_MP1502,#_MP1508{display:none}
-/*内容*/
+
 #_MP857,#_MP868,#_MP945,#_MP957,#_MP1509,	#_MP1501,#_MP872,	#_MP874,#_MP32 {display:none}
 
 
 #_MP74,#_MP839{display:none}
-/*默认站点*/
+
 .header .nav li.tab_web{display:none}
 
 .objbody{overflow:hidden}

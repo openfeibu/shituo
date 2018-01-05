@@ -251,7 +251,7 @@ class waybill extends admin {
         for ($i =0; $i < count($result); $i++) {
             $objPHPExcel->getActiveSheet(0)->setCellValue('A' . ($i + 2), $result[$i]['username']);
             $objPHPExcel->getActiveSheet(0)->setCellValue('B' . ($i + 2), $result[$i]['number']);
-            $objPHPExcel->getActiveSheet(0)->setCellValue('C' . ($i + 2), $result[$i]['logistics_mode']);
+            $objPHPExcel->getActiveSheet(0)->setCellValue('C' . ($i + 2), L($result[$i]['logistics_mode']));
             $objPHPExcel->getActiveSheet(0)->setCellValue('D' . ($i + 2), date("Y-m-d",$result[$i]['sendtime']));
             $objPHPExcel->getActiveSheet(0)->setCellValue('E' . ($i + 2), $result[$i]['sender']);
             $objPHPExcel->getActiveSheet(0)->setCellValue('F' . ($i + 2), $result[$i]['sender_mobile']);

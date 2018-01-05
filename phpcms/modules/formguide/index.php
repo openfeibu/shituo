@@ -11,7 +11,7 @@ class index {
 		$this->siteid = intval($_GET[siteid]) ? intval($_GET[siteid]) : get_siteid();
 		$this->M = $this->M[$this->siteid];
 	}
-	
+
 	/**
 	 * 表单向导首页
 	 */
@@ -26,7 +26,7 @@ class index {
 		$datas = $this->db->select(array('siteid'=>$this->siteid, 'type'=>3, 'disabled'=>0), 'modelid, name, addtime', $offset.',20', '`modelid` DESC');
 		include template('formguide', 'index');
 	}
-	
+
 	/**
 	 * 表单展示
 	 */
@@ -51,7 +51,7 @@ class index {
 		if (isset($_POST['dosubmit'])) {
 			$tablename = 'form_'.$r['tablename'];
 			$this->m_db->change_table($tablename);
-			
+
 			$data = array();
 			require CACHE_MODEL_PATH.'formguide_input.class.php';
 			$formguide_input = new formguide_input($formid);
@@ -94,7 +94,7 @@ class index {
 			if (($setting['allowmultisubmit']==0 && $re['datetime']) || ((SYS_TIME-$re['datetime'])<$this->M['interval']*60)) {
 				$_GET['action'] ? exit : showmessage(L('had_participate'), APP_PATH.'index.php?m=formguide&c=index&a=index');
 			}
-			
+
 			require CACHE_MODEL_PATH.'formguide_form.class.php';
 			$formguide_form = new formguide_form($formid, $no_allowed);
 			$forminfos_data = $formguide_form->get();
