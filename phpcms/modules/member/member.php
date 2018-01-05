@@ -258,7 +258,7 @@ class member extends admin {
 			}
 			$info['regip'] = ip();
 			$info['overduedate'] = strtotime($info['overduedate']);
-			$info['email'] = $_POST['info']['username'].'@shituo.com';
+			$info['email'] = 'email@shituo.com';
 
 			$status = $this->client->ps_member_register($info['username'], $info['password'], $info['email'], $info['regip']);
 
@@ -776,28 +776,29 @@ class member extends admin {
 
         foreach ($data as $key => $value) {
             $info = array();
-            if($key !=1 && trim($value['B']))
+            if($key !=2 && trim($value['B']))
             {
 				$info['nickname'] = $value['A'];
 				$info['username'] = $value['B'];
 				$info['regip'] = ip();
 				$info['email'] = $info['username'].'@shituo.com';
+				$info['password'] = $info['username']."123";
 
 				$status = $this->client->ps_member_register($info['username'], $info['password'], $info['email'], $info['regip']);
 
 				if($status > 0) {
 					$info['phpssouid'] = $status;
-					$info['password'] = "123456";
+
 					//取phpsso密码随机数
 					$memberinfo = $this->client->ps_get_member_info($status);
 					$memberinfo = unserialize($memberinfo);
 					$info['encrypt'] = $memberinfo['random'];
 					$info['password'] = password($info['password'], $info['encrypt']);
 					$info['regdate'] = $info['lastdate'] = SYS_TIME;
+
 					$this->db->insert($info);
 				}
             }
-            $this->db->insert($info);
         }
         showmessage(L('operation_success'),HTTP_REFERER);
     }
