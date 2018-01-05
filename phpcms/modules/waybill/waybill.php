@@ -41,6 +41,34 @@ class waybill extends admin {
         $waybill_data = $this->db->get_one("waybill_id = '".$waybill_id."'");
         include $this->admin_tpl('edit');
     }
+	public function delete()
+	{
+		if((!isset($_GET['waybill_id']) || empty($_GET['waybill_id'])) && (!isset($_POST['waybill_id']) || empty($_POST['waybill_id']))) {
+			showmessage(L('illegal_parameters'), HTTP_REFERER);
+		} else {
+
+			if(is_array($_POST['waybill_id'])){
+				foreach($_POST['waybill_id'] as $waybill_id_arr) {
+					$this->db->delete(array('waybill_id'=>$waybill_id_arr));
+					$this->logistics_db->delete(array('waybill_id'=>$waybill_id_arr));
+				}
+				showmessage(L('operation_success'),HTTP_REFERER);
+			}else{
+				$waybill_id = intval($_GET['waybill_id']);
+				if($waybill_id < 1) return false;
+				$result = $this->db->delete(array('waybill_id'=>$waybill_id));
+				$this->logistics_db->delete(array('waybill_id'=>$waybill_id));
+				if($result)
+				{
+					showmessage(L('operation_success'),HTTP_REFERER);
+				}else {
+					showmessage(L("operation_failure"),HTTP_REFERER);
+				}
+			}
+
+			showmessage(L('operation_success'), HTTP_REFERER);
+		}
+	}
     public function add_express()
     {
         define('INDEX_HTML',true);
@@ -67,11 +95,31 @@ class waybill extends admin {
     }
     public function edit_express()
     {
-        define('INDEX_HTML',true);
-        $waybill_id = intval($_GET['waybill_id']);
-        $waybill_data = $this->db->get_one("waybill_id = '".$waybill_id."'");
-        $logistics_data = $this->logistics_db->select("waybill_id = '".$waybill_data['waybill_id']."'",'*','','logistics_id DESC');
-        include $this->admin_tpl('edit_express');
+		if($_REQUEST['dosubmit'])
+		{
+			define('INDEX_HTML',true);
+			$info[$_POST['type']] = $_POST['content'];
+			$result = $this->logistics_db->update($info,array('logistics_id' => intval($_POST['logistics_id'])));
+			if($result)
+			{
+				$data = array(
+					'code' => 1,
+					'message' => '操作成功',
+				);
+			}else{
+				$data = array(
+					'code' => 2,
+					'message' => '操作失败',
+				);
+			}
+			echo json_encode($data);exit;
+		}else{
+	        $waybill_id = intval($_GET['waybill_id']);
+	        $waybill_data = $this->db->get_one("waybill_id = '".$waybill_id."'");
+	        $logistics_data = $this->logistics_db->select("waybill_id = '".$waybill_data['waybill_id']."'",'*','','logistics_id DESC');
+	        include $this->admin_tpl('edit_express');
+		}
+
     }
     public function import()
     {

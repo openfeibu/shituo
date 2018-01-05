@@ -25,15 +25,18 @@ var pc_hash = '<?php echo $_SESSION['pc_hash']?>'
 
 /*样式隐藏*/
 /*phpsso 用户 界面 扩展 视频*/
-/* #_M2,#_M8,#_M1677,#_M6,#_M7,#_M9{display: none;} */
+#_M2,#_M8,#_M1677,#_M6,#_M7,#_M9{display: none;}
 /*设置*/
-/* #_MP65,#_MP959,#_MP979,#_MP980,#_MP981,#_MP1093{display:none} */
+#_MP65,#_MP959,#_MP979,#_MP980,#_MP981,#_MP1093{display:none}
 /*模块*/
-/* #_MP1557,#_MP1535,#_MP1533,#__MP1520,#__MP1502,#__MP1571,#__MP902,#__MP909,#_MP1528,#_MP1520,#_MP1571,#_MP902,#_MP909,#_MP1502,#_MP1508{display:none} */
+#_MP1557,#_MP1535,#_MP1533,#__MP1520,#__MP1502,#__MP1571,#__MP902,#__MP909,#_MP1528,#_MP1520,#_MP1571,#_MP902,#_MP909,#_MP1502,#_MP1508{display:none}
 /*内容*/
-/* #_MP857,#_MP868,#_MP945,#_MP957,#_MP1509,	#_MP1501,#_MP872,	#_MP874,#_MP32 {display:none} */
+#_MP857,#_MP868,#_MP945,#_MP957,#_MP1509,	#_MP1501,#_MP872,	#_MP874,#_MP32 {display:none}
+
+
+#_MP74,#_MP839{display:none}
 /*默认站点*/
-/* .header .nav li.tab_web{display:none}
+.header .nav li.tab_web{display:none}
 
 .objbody{overflow:hidden}
 
@@ -48,11 +51,11 @@ var pc_hash = '<?php echo $_SESSION['pc_hash']?>'
 .pd{padding:4px;}
 .ac{background-color:#333; color:#fff;}
 .hvs{background-color:#555; cursor: pointer;}
-.bg_btn{background: url(<?php echo IMG_PATH?>admin_img/icon2.jpg) no-repeat; width:32px; height:32px;} */
+.bg_btn{background: url(<?php echo IMG_PATH?>admin_img/icon2.jpg) no-repeat; width:32px; height:32px;}
 </style>
 </head>
 <body scroll="no" class="objbody">
-<div class="btns btns2" id="btnx">
+<!-- <div class="btns btns2" id="btnx">
 <div class="bg_btn"></div>
 <?php $model_types = pc_base::load_config('model_config');?>
 <h6><?php echo L('panel_switch');?></h6>
@@ -62,7 +65,7 @@ var pc_hash = '<?php echo $_SESSION['pc_hash']?>'
 		<li onclick="_Site_M('<?php echo $mt;?>');"><span><?php echo $mn;?></span></li>
 		<?php } }?>
 	</ul>
-</div>
+</div> -->
 <div id="dvLockScreen" class="ScreenLock" style="display:<?php if(isset($_SESSION['lock_screen']) && $_SESSION['lock_screen']==0) echo 'none';?>">
     <div id="dvLockScreenWin" class="inputpwd">
     <h5><b class="ico ico-info"></b><span id="lock_tips"><?php echo L('lockscreen_status');?></span></h5>
@@ -116,7 +119,11 @@ var pc_hash = '<?php echo $_SESSION['pc_hash']?>'
         </div>
     <div class="col-auto mr8">
     <div class="crumbs">
-    <div class="shortcut cu-span"><a href="?m=content&c=create_html&a=public_index&pc_hash=<?php echo $_SESSION['pc_hash'];?>" target="right"><span><?php echo L('create_index')?></span></a><a href="?m=admin&c=cache_all&a=init&pc_hash=<?php echo $_SESSION['pc_hash'];?>" target="right"><span><?php echo L('update_backup')?></span></a><a href="javascript:art.dialog({id:'map',iframe:'?m=admin&c=index&a=public_map', title:'<?php echo L('background_map')?>', width:'710', height:'500', lock:true});void(0);"><span><?php echo L('background_map')?></span></a><?php echo runhook('admin_top_left_menu')?></div>
+    <div class="shortcut cu-span">
+		<!-- <a href="?m=content&c=create_html&a=public_index&pc_hash=<?php echo $_SESSION['pc_hash'];?>" target="right"><span><?php echo L('create_index')?></span></a> -->
+		<a href="?m=admin&c=cache_all&a=init&pc_hash=<?php echo $_SESSION['pc_hash'];?>" target="right"><span><?php echo L('update_backup')?></span></a>
+		<!-- <a href="javascript:art.dialog({id:'map',iframe:'?m=admin&c=index&a=public_map', title:'<?php echo L('background_map')?>', width:'710', height:'500', lock:true});void(0);"><span><?php echo L('background_map')?></span></a> -->
+		<?php echo runhook('admin_top_left_menu')?></div>
     <?php echo L('current_position')?><span id="current_pos"></span></div>
     	<div class="col-1">
         	<div class="content" style="position:relative; overflow:hidden">
@@ -325,23 +332,23 @@ function _MP(menuid,targetUrl) {
 	show_help(targetUrl);
 }
 
-function show_help(targetUrl) {
-	$("#help").slideUp("slow");
-	var str = '';
-	$.getJSON("http://v9.help.phpcms.cn/api.php?jsoncallback=?",{op:'help',targetUrl: targetUrl},
-	function(data){
-		if(data!=null) {
-			$("#help").slideDown("slow");
-			$.each(data, function(i,item){
-				str += '<a href="'+item.url+'" target="_blank">'+item.title+'</a>';
-			});
-
-			str += '<a class="panel-delete" href="javascript:;" onclick="$(\'#help\').slideUp(\'slow\')"></a>';
-			$('#help').html(str);
-		}
-	});
-	$("#help").data('time', 1);
-}
+// function show_help(targetUrl) {
+// 	$("#help").slideUp("slow");
+// 	var str = '';
+// 	$.getJSON("http://v9.help.phpcms.cn/api.php?jsoncallback=?",{op:'help',targetUrl: targetUrl},
+// 	function(data){
+// 		if(data!=null) {
+// 			$("#help").slideDown("slow");
+// 			$.each(data, function(i,item){
+// 				str += '<a href="'+item.url+'" target="_blank">'+item.title+'</a>';
+// 			});
+//
+// 			str += '<a class="panel-delete" href="javascript:;" onclick="$(\'#help\').slideUp(\'slow\')"></a>';
+// 			$('#help').html(str);
+// 		}
+// 	});
+// 	$("#help").data('time', 1);
+// }
 setInterval("hidden_help()", 30000);
 function hidden_help() {
 	var htime = $("#help").data('time')+1;

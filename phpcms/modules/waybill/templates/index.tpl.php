@@ -3,22 +3,24 @@ defined('IN_ADMIN') or exit('No permission resources.');
 include $this->admin_tpl('header', 'admin');
 ?>
 <div class="pad-lr-10">
-    <div class="content-menu ib-a blue line-x">
-        <a class="add fb" href="?m=waybill&c=waybill&a=add"><em>添加运单</em></a>
-        <span>|</span>
-        <a class="add fb" href="?m=waybill&c=waybill&a=export"><em>导出所有运单</em></a>
 
-    </div>
     <form method="post" action="?m=waybill&c=waybill&a=import" enctype="multipart/form-data">
-       导入excel表：<input type="file" name="file_stu"/>
-       <input type="submit" value="导入"/>
+        <div class="content-menu ib-a blue line-x">
+            <a class="add fb" href="?m=waybill&c=waybill&a=add"><em>添加运单</em></a>
+            <span>|</span>
+            <a class="add fb" href="?m=waybill&c=waybill&a=export"><em>导出所有运单</em></a>
+            <span>|</span>
+            导入excel表：<input type="file" name="file_stu"/>
+            <input type="submit"  class="button" value="导入"/>
+        </div>
+
     </form>
-    <form name="myform" id="myform" action="?m=guestbook&c=guestbook&a=check_register" method="post" onsubmit="checkuid();return false;">
+    <form name="myform" id="myform" action="?m=waybill&c=waybill&a=delete" method="post" onsubmit="checkuid();return false;">
         <div class="table-list">
          <table width="100%" cellspacing="0">
                 <thead>
                   <tr>
-                    <th width="35" align="center"><input type="checkbox" value="" id="check_box" onclick="selectall('guestid[]');"></th>
+                    <th width="35" align="center"><input type="checkbox" value="" id="check_box" onclick="selectall('waybill_id[]');"></th>
                     <th align="center">运单单号</th>
                     <th align="center">入仓代码</th>
                     <th align="center">寄件日期</th>
@@ -59,5 +61,19 @@ include $this->admin_tpl('header', 'admin');
         </div>
     </form>
 </div>
+<script>
+function checkuid() {
+	var ids='';
+	$("input[name='waybill_id[]']:checked").each(function(i, n){
+		ids += $(n).val() + ',';
+	});
+	if(ids=='') {
+		window.top.art.dialog({content:'<?php echo L('before_select_operation')?>',lock:true,width:'200',height:'50',time:1.5},function(){});
+		return false;
+	} else {
+		myform.submit();
+	}
+}
+</script>
 </body>
 </html>

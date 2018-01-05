@@ -29,8 +29,8 @@ include $this->admin_tpl('header_new', 'admin');
                             if($val['content']){
                         ?>
 
-                            <div class="line_search_text_resule_item fb-position-relative <?php if($i ==0){echo "first"; }?> ">
-                                <p><label><b><?php echo $val['content']?></b></label><span><?php echo date("Y-m-d H:i:s",$val['addtime'])?></span><a data-id="<?php echo $val['logistics_id'];?>">修改信息</a></p>
+                            <div class="line_search_text_resule_item line_search_text_resule_item_1 fb-position-relative <?php if($i ==0){echo "first"; }?> ">
+                                <p><label><b><?php echo $val['content']?></b></label><span><?php echo date("Y-m-d H:i:s",$val['addtime'])?></span><a data-id="<?php echo $val['logistics_id'];?>" data-type="content">修改信息</a></p>
                             </div>
 
                         <?php
@@ -63,8 +63,8 @@ include $this->admin_tpl('header_new', 'admin');
                         {
                             if($val['en_content']){
                         ?>
-                            <div class="line_search_text_resule_item fb-position-relative <?php if($i ==0){echo "first"; }?> ">
-                                <p><label><b><?php echo $val['en_content']?></b></label><span><?php echo date("Y-m-d H:i:s",$val['addtime'])?></span><a data-id="<?php echo $val['logistics_id'];?>">修改信息</a></p>
+                            <div class="line_search_text_resule_item line_search_text_resule_item_1 fb-position-relative <?php if($i ==0){echo "first"; }?> ">
+                                <p><label><b><?php echo $val['en_content']?></b></label><span><?php echo date("Y-m-d H:i:s",$val['addtime'])?></span><a data-id="<?php echo $val['logistics_id'];?>" data-type="en_content">修改信息</a></p>
                             </div>
                         <?php
                             $i++;
@@ -96,8 +96,8 @@ include $this->admin_tpl('header_new', 'admin');
                         {
                             if($val['arab_content']){
                         ?>
-                            <div class="line_search_text_resule_item fb-position-relative <?php if($i ==0){echo "first"; }?> ">
-                                <p><label><b><?php echo $val['arab_content']?></b></label><span><?php echo date("Y-m-d H:i:s",$val['addtime'])?></span><a data-id="<?php echo $val['logistics_id'];?>">修改信息</a></p>
+                            <div class="line_search_text_resule_item line_search_text_resule_item_2 fb-position-relative <?php if($i ==0){echo "first"; }?> ">
+                                <p><label><b><?php echo $val['arab_content']?></b></label><span><?php echo date("Y-m-d H:i:s",$val['addtime'])?></span><a data-id="<?php echo $val['logistics_id'];?>" data-type="arab_content">修改信息</a></p>
                             </div>
                         <?php
                             $i++;
@@ -138,7 +138,29 @@ $(function(){
             }, "json");
             return false;
         })
-    $(".line_search_text_resule_item a").on("click",function(){
+    $(".line_search_text_resule_item_1 a").on("click",function(){
+            var that = $(this);
+            $fb.showModal({
+                title : '修改物流信息',//提示的标题
+                textBox:'textarea', //input：为input；textarea：为textarea
+                value:that.parents(".line_search_text_resule_item").find('b').text(),//文本框提示
+            },function(val){
+                var url = "?m=waybill&c=waybill&a=edit_express&dosubmit=1waybill_id=<?php echo $waybill_id;?>&osubmit=1&pc_hash="+pc_hash;
+                var logistics_id = that.attr("data-id");
+                var type = that.attr("data-type");
+                console.log(that.attr("data-id"));
+                $fb.loading();
+                $.post(url, {'logistics_id':logistics_id,'type':type,'content':val}, function(data){
+                    $fb.closeLoading();
+                    if(data.code == 1){
+                        that.parents(".line_search_text_resule_item").find('b').text(val)
+                    }else{
+                        $fb.fbNews({"type":"warning","content":data.message});
+                    }
+                }, "json");
+            })
+        })
+    $(".line_search_text_resule_item_2 a").on("click",function(){
             var that = $(this);
             $fb.showModal({
                 title : '修改物流信息',//提示的标题

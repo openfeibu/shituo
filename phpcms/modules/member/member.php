@@ -763,6 +763,97 @@ class member extends admin {
 			exit('1');
 		}
 	}
+	public function import()
+    {
+        $file_path=$_FILES['file_stu']['tmp_name'];
+        require PC_PATH.'libs/classes/PHPExcel.php';
+        require PC_PATH.'libs/classes/PHPExcel/IOFactory.php';
+        require PC_PATH.'libs/classes/PHPExcel/Reader/Excel2007.php';
+        require PC_PATH.'libs/classes/PHPExcel/Reader/Excel5.php';
 
+        move_uploaded_file($file_path, './tmp.xls');
+        $data=format_excel2array('./tmp.xls');
+
+        foreach ($data as $key => $value) {
+            $info = array();
+            if($key !=1 && trim($value['B']))
+            {
+				$info['nickname'] = $value['A'];
+				$info['username'] = $value['B'];
+				$info['regip'] = ip();
+				$info['email'] = $info['username'].'@shituo.com';
+
+				$status = $this->client->ps_member_register($info['username'], $info['password'], $info['email'], $info['regip']);
+
+				if($status > 0) {
+					$info['phpssouid'] = $status;
+					$info['password'] = "123456";
+					//取phpsso密码随机数
+					$memberinfo = $this->client->ps_get_member_info($status);
+					$memberinfo = unserialize($memberinfo);
+					$info['encrypt'] = $memberinfo['random'];
+					$info['password'] = password($info['password'], $info['encrypt']);
+					$info['regdate'] = $info['lastdate'] = SYS_TIME;
+					$this->db->insert($info);
+				}
+            }
+            $this->db->insert($info);
+        }
+        showmessage(L('operation_success'),HTTP_REFERER);
+    }
+	public function export()
+    {
+        require PC_PATH.'libs/classes/PHPExcel.php';
+        require PC_PATH.'libs/classes/PHPExcel/Writer/Excel5.php';
+        require PC_PATH.'libs/classes/PHPExcel/Writer/Excel2007.php';
+        require PC_PATH.'libs/classes/PHPExcel/IOFactory.php';
+
+        $result=$this->db->select('','*');
+        //var_dump($result);die;
+        //创建一个excel对象
+        $objPHPExcel = new PHPExcel();
+        $objPHPExcel->getProperties()->setCreator("ctos")
+                ->setLastModifiedBy("ctos")
+                ->setTitle("Office 2007 XLSX Test Document")
+                ->setSubject("Office 2007 XLSX Test Document")
+                ->setDescription("Test document for Office 2007 XLSX, generated using PHP classes.")
+                ->setKeywords("office 2007 openxml php")
+                ->setCategory("Test result file");
+
+        //set width
+        $objPHPExcel->getActiveSheet()->getColumnDimension('A')->setWidth(20);
+        $objPHPExcel->getActiveSheet()->getColumnDimension('B')->setWidth(20);
+
+
+        // set table header content
+        $objPHPExcel->setActiveSheetIndex(0)
+                ->setCellValue('A1', '名称')
+                ->setCellValue('B1', '入仓代码')
+                ;
+
+        // Miscellaneous glyphs, UTF-8
+
+        for ($i =0; $i < count($result); $i++) {
+			$objPHPExcel->getActiveSheet(0)->setCellValue('A' . ($i + 3), $result[$i]['nickname']);
+            $objPHPExcel->getActiveSheet(0)->setCellValue('B' . ($i + 3), $result[$i]['username']);
+        }
+
+        // Rename sheet
+        $objPHPExcel->getActiveSheet()->setTitle('客户数据');
+
+
+        // Set active sheet index to the first sheet, so Excel opens this as the first sheet
+        $objPHPExcel->setActiveSheetIndex(0);
+
+
+        // Redirect output to a client’s web browser (Excel5)
+        ob_end_clean();//清除缓冲区,避免乱码
+        header('Content-Type: application/vnd.ms-excel');
+        header('Content-Disposition: attachment;filename="客户数据(' . date('Ymd-His') . ').xls"');
+        header('Cache-Control: max-age=0');
+
+        $objWriter = PHPExcel_IOFactory::createWriter($objPHPExcel, 'Excel5');
+        $objWriter->save('php://output');
+    }
 }
 ?>

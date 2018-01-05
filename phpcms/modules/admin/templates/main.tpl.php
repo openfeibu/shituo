@@ -18,7 +18,7 @@ $(function(){if ($.browser.msie && parseInt($.browser.version) < 7) $('#browserV
 	<?php echo L('main_last_loginip')?><?php echo $loginip?> <br />
 	</div>
 </div>
-<div class="col-2 col-auto">
+<!-- <div class="col-2 col-auto">
 	<h6><?php echo L('main_safety_tips')?></h6>
 	<div class="content" style="color:#ff0000;">
 <?php if($pc_writeable) {?>
@@ -44,7 +44,7 @@ if($tpl_edit=='1') {?>
 <?php echo L('main_safety_tpledit')?><br />
 <?php } ?>
 	</div>
-</div>
+</div> -->
 <div class="bk10"></div>
 </div>
 </body></html>

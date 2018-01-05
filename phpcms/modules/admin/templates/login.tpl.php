@@ -57,9 +57,9 @@ $(document).ready(function() {
     <div class="admin_info">
        <!--<p>© 2015-2016 蒙奇时光 Muntime.com v1.1</p>
        <p>赣ICP备15005092号-3</p>-->
-       <p>© 2015-2016 PHPCMS phpcms.cn <?php echo pc_base::load_config('version','pc_version');?></p>
+       <p>© 2015-2016 飞步科技 www.feibu.info <?php echo pc_base::load_config('version','pc_version');?></p>
     </div>
-    </form>   
+    </form>
   </div>
 </body>
 </html>

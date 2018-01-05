@@ -1,6 +1,16 @@
 <?php defined('IN_ADMIN') or exit('No permission resources.');?>
 <?php include $this->admin_tpl('header', 'admin');?>
 <div class="pad-lr-10">
+
+    <form method="post" action="?m=member&c=member&a=import" enctype="multipart/form-data">
+        <div class="content-menu ib-a blue line-x">
+            <a class="add fb" href="?m=member&c=member&a=export"><em>导出所有会员</em></a>
+            <span> | </span>
+            导入excel表：<input type="file" name="file_stu"/>
+            <input type="submit" class="button" value="导入"/>
+        </div>
+
+    </form>
 <form name="searchform" action="" method="get" >
 <input type="hidden" value="member" name="m">
 <input type="hidden" value="member" name="c">
@@ -15,24 +25,7 @@
 				<?php echo L('regtime')?>：
 				<?php echo form::date('start_time', $start_time)?>-
 				<?php echo form::date('end_time', $end_time)?>
-				<?php if($_SESSION['roleid'] == 1) {?>
-				<?php echo form::select($sitelist, $siteid, 'name="siteid"', L('all_site'));}?>
 
-				<select name="status">
-					<option value='0' <?php if(isset($_GET['status']) && $_GET['status']==0){?>selected<?php }?>><?php echo L('status')?></option>
-					<option value='1' <?php if(isset($_GET['status']) && $_GET['status']==1){?>selected<?php }?>><?php echo L('lock')?></option>
-					<option value='2' <?php if(isset($_GET['status']) && $_GET['status']==2){?>selected<?php }?>><?php echo L('normal')?></option>
-				</select>
-				<?php echo form::select($modellist, $modelid, 'name="modelid"', L('member_model'))?>
-				<?php echo form::select($grouplist, $groupid, 'name="groupid"', L('member_group'))?>
-
-				<select name="type">
-					<option value='1' <?php if(isset($_GET['type']) && $_GET['type']==1){?>selected<?php }?>><?php echo L('username')?></option>
-					<option value='2' <?php if(isset($_GET['type']) && $_GET['type']==2){?>selected<?php }?>><?php echo L('uid')?></option>
-					<option value='3' <?php if(isset($_GET['type']) && $_GET['type']==3){?>selected<?php }?>><?php echo L('email')?></option>
-					<option value='4' <?php if(isset($_GET['type']) && $_GET['type']==4){?>selected<?php }?>><?php echo L('regip')?></option>
-					<option value='5' <?php if(isset($_GET['type']) && $_GET['type']==5){?>selected<?php }?>><?php echo L('nickname')?></option>
-				</select>
 
 				<input name="keyword" type="text" value="<?php if(isset($_GET['keyword'])) {echo $_GET['keyword'];}?>" class="input-text" />
 				<input type="submit" name="search" class="button" value="<?php echo L('search')?>" />
@@ -92,9 +85,6 @@
 
 <div class="btn">
 <label for="check_box"><?php echo L('select_all')?>/<?php echo L('cancel')?></label> <input type="submit" class="button" name="dosubmit" value="<?php echo L('delete')?>" onclick="return confirm('<?php echo L('sure_delete')?>')"/>
-<input type="submit" class="button" name="dosubmit" onclick="document.myform.action='?m=member&c=member&a=lock'" value="<?php echo L('lock')?>"/>
-<input type="submit" class="button" name="dosubmit" onclick="document.myform.action='?m=member&c=member&a=unlock'" value="<?php echo L('unlock')?>"/>
-<input type="button" class="button" name="dosubmit" onclick="move();return false;" value="<?php echo L('move')?>"/>
 </div>
 
 <div id="pages"><?php echo $pages?></div>
