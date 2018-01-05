@@ -5,11 +5,12 @@ pc_base::load_app_class('messagequeue', 'admin' , 0);
 pc_base::load_app_func('global', 'admin');
 
 class index extends phpsso {
-	
+
 	private $username, $config;
-	
+
 	public function __construct() {
 		parent::__construct();
+//var_dump(1);exit;
 		$this->config = pc_base::load_config('system');
 		/*判断应用字符集和phpsso字符集是否相同，如果不相同，转换用户名为phpsso所用字符集*/
 		$this->username = isset($this->data['username']) ? $this->data['username'] : '';
@@ -27,7 +28,7 @@ class index extends phpsso {
 			}
 		}
 	}
-	
+
 	/**
 	 * 用户注册
 	 * @param string $username 	用户名
@@ -36,6 +37,7 @@ class index extends phpsso {
 	 * @return int {-1:用户名已经存在 ;-2:email已存在;-4:用户名禁止注册;-5:邮箱禁止注册;-6:uc注册失败;int(uid):成功}
 	 */
 	public function register() {
+
 		$this->random = isset($this->data['random']) && !empty($this->data['random']) ? $this->data['random'] : create_randomstr(6);
 		$this->password = isset($this->data['password']) ? create_password($this->data['password'], $this->random) : '';
 		$this->email = isset($this->data['email']) ? $this->data['email'] : '';
@@ -50,14 +52,14 @@ class index extends phpsso {
 		} elseif ($checkname == -4) {
 			exit('-4');
 		}
-		
+
 		$checkemail = $this->checkemail(1);
 		if($checkemail == -1) {
 			exit('-2');
 		} elseif ($checkemail == -5) {
 			exit('-5');
 		}
-		
+
 		//UCenter会员注册
 		$ucuserid = 0;
 		if ($this->config['ucuse']) {
@@ -91,8 +93,8 @@ class index extends phpsso {
 			} else {
 				exit('-6');
 			}
-		}	
-		
+		}
+
 		$data = array(
 					'username' => $this->username,
 					'password' => $this->password,
@@ -110,9 +112,9 @@ class index extends phpsso {
 		$noticedata = $data;
 		$noticedata['uid'] = $uid;
 		messagequeue::add('member_add', $noticedata);
-		exit("$uid");	//exit($uid) 不可以If status is an integer, that value will also be used as the exit status. 
+		exit("$uid");	//exit($uid) 不可以If status is an integer, that value will also be used as the exit status.
 	}
-	
+
 	/**
 	 * 编辑用户，可以不传入旧密码和新密码
 	 * 如果传入新密码，则修改密码为新密码
@@ -128,11 +130,11 @@ class index extends phpsso {
 		$this->uid = isset($this->data['uid']) ? $this->data['uid'] : '';
 
 		$userinfo = $this->getuserinfo(1);
-		
+
 		if (isset($this->data['password']) && !empty($this->data['password'])) {
 			$this->password = create_password($this->data['password'], $userinfo['random']);
 		}
-		
+
 		$this->random = !empty($this->data['random']) ? $this->data['random'] : $userinfo['random'];
 		if (isset($this->data['newpassword']) && !empty($this->data['newpassword'])) {
 			$this->newpassword = create_password($this->data['newpassword'], $this->random);
@@ -148,11 +150,11 @@ class index extends phpsso {
 
 		if ($this->email && $userinfo['email'] != $this->email) {
 			if($this->checkemail(1) == -1) exit('-3');
-		}	
-		
+		}
+
 		$data = array();
 		$data['appname'] = $this->applist[$this->appid]['name'];
-		
+
 		if (!empty($this->email) && $userinfo['email'] != $this->email) {
 			$data['email'] = $this->email;
 		}
@@ -163,7 +165,7 @@ class index extends phpsso {
 		}
 
 		if (!empty($data)) {
-			
+
 			//ucenter部份
 			if ($this->config['ucuse']) {
 				pc_base::load_config('uc_config');
@@ -175,9 +177,9 @@ class index extends phpsso {
 						case '-1':
 							exit('-2');
 						break;
-						case '0':				
-						case '-4':						
-						case '-5':						
+						case '0':
+						case '-4':
+						case '-5':
 						case '-6':
 						case '-7':
 						case '-8':
@@ -187,7 +189,7 @@ class index extends phpsso {
 				}
 			}
 			if (empty($data['email'])) unset($data['email']);
-		
+
 			/*插入消息队列*/
 			$noticedata = $data;
 			$noticedata['uid'] = $userinfo['uid'];
@@ -214,7 +216,7 @@ class index extends phpsso {
 
 		if($this->uid > 0 || is_array($this->uid)) {
 			$where = to_sqls($this->uid, '', 'uid');
-			
+
 			//ucenter部份
 			if ($this->config['ucuse']) {
 				pc_base::load_config('uc_config');
@@ -232,13 +234,13 @@ class index extends phpsso {
 				} else {
 					exit('-1');
 				}
-				
+
 			}
-			
+
 			/*插入消息队列*/
 			$noticedata['uids'] = $this->uid;
 			messagequeue::add('member_delete', $noticedata);
-			
+
 			$this->db->delete($where);
 			exit('1');
 		} elseif(!empty($this->username)) {
@@ -294,13 +296,13 @@ class index extends phpsso {
 		} else {
 			$userinfo = $this->db->get_one(array('username'=>$this->username));
 		}
-		
+
 		if ($this->config['ucuse']) {
 			pc_base::load_config('uc_config');
 			require_once PHPCMS_PATH.'api/uc_client/client.php';
 			list($uid, $uc['username'], $uc['password'], $uc['email']) = uc_user_login($this->username, $this->password, 0);
 		}
-		
+
 		if($userinfo) {
 			//ucenter登陆部份
 			if ($this->config['ucuse']) {
@@ -335,9 +337,9 @@ class index extends phpsso {
 				}
 			} else {
 				exit('-1');
-			}	
+			}
 		}
-			
+
 		//如果开启phpcms_2008_sp4兼容模式，根据sp4规则验证密码，如果不成功再根据phpsso规则验证密码
 		$setting_sp4 = getcache('settings_sp4', 'admin');
 		if($setting_sp4['sp4use']) {
@@ -347,7 +349,7 @@ class index extends phpsso {
 				exit(serialize($userinfo));
 			}
 		}
-		
+
 		if(!empty($userinfo) && $userinfo['password'] == create_password($this->password, $userinfo['random'])) {
 			//登录成功更新用户最近登录时间和ip
 			$this->db->update(array('lastdate'=>SYS_TIME, 'lastip'=>ip()), array('uid'=>$userinfo['uid']));
@@ -357,7 +359,7 @@ class index extends phpsso {
 		}
 
 	}
-	
+
 	/**
 	 * 同步登陆
 	 * @param string $uid	用户id
@@ -368,7 +370,7 @@ class index extends phpsso {
 		if($this->applist[$this->appid]['synlogin']) {
 			$this->uid = isset($this->data['uid']) ? $this->data['uid'] : '';
 			$this->password = isset($this->data['password']) ? $this->data['password'] : '';
-		
+
 			$res = '';
 			//ucenter登陆部份
 			if ($this->config['ucuse']) {
@@ -376,8 +378,8 @@ class index extends phpsso {
 				require_once PHPCMS_PATH.'api/uc_client/client.php';
 				$r = $this->db->get_one(array('uid'=>$this->uid), "ucuserid");
 				if($r['ucuserid']) $res .= uc_user_synlogin($r['ucuserid']);
-			}	
-			
+			}
+
 			foreach($this->applist as $v) {
 				if (!$v['synlogin']) continue;
 				if($v['appid'] != $this->appid) {
@@ -403,7 +405,7 @@ class index extends phpsso {
 				pc_base::load_config('uc_config');
 				require_once PHPCMS_PATH.'api/uc_client/client.php';
 				$res .= uc_user_synlogout();
-			}	
+			}
 			foreach($this->applist as $v) {
 				if (!$v['synlogin']) continue;
 				if($v['appid'] != $this->appid) {
@@ -416,7 +418,7 @@ class index extends phpsso {
 			exit;
 		}
 	}
-	
+
 	/**
 	 * 获取应用列表
 	 */
@@ -427,7 +429,7 @@ class index extends phpsso {
 		}
 		exit(serialize($applist));
 	}
-	
+
 	/**
 	 * 获取积分兑换规则
 	 */
@@ -464,7 +466,7 @@ class index extends phpsso {
 		$outcredit = $this->getcredit(1);
 		//目标系统积分增加数
 		$this->credit = floor($this->credit * $outcredit[$this->from.'_'.$this->to]['torate'] / $outcredit[$this->from.'_'.$this->to]['fromrate']);
-			
+
 		/*插入消息队列*/
 		$noticedata['appname'] = $this->appname;
 		$noticedata['uid'] = $this->uid;
@@ -474,7 +476,7 @@ class index extends phpsso {
 		messagequeue::add('change_credit', $noticedata);
 		exit('1');
 	}
-	
+
 	/**
 	 * 检查用户名
 	 * @param string $username	用户名
@@ -501,7 +503,7 @@ class index extends phpsso {
 				}
 			}
 		}
-		
+
 		//UCenter部分
 		if ($this->config['ucuse']) {
 			pc_base::load_config('uc_config');
@@ -521,7 +523,7 @@ class index extends phpsso {
 		}
 
 	}
-	
+
 	/**
 	 * 检查email
 	 * @param string $email	email
@@ -529,51 +531,51 @@ class index extends phpsso {
 	 */
 	public function checkemail($is_return=0) {
 		$this->email = isset($this->email) ? $this->email : isset($this->data['email']) ? $this->data['email'] : '';
-		if(empty($this->email)) {
-			if ($is_return) {
-				return -1;
-			} else {
-				exit('-1');
-			}
-		}
-		//非法关键词判断
-		$denyemail = $this->settings['denyemail'];
-		if(is_array($denyemail)) {
-			$denyemail = implode("|", $denyemail);
-			$pattern = '/^('.str_replace(array('\\*', ' ', "\|"), array('.*', '', '|'), preg_quote($denyemail, '/')).')$/i';
-			if(preg_match($pattern, $this->email)) {
-				if ($is_return) {
-					return -5;
-				} else {
-					exit('-5');
-				}
-			}
-		}
-		
-		//UCenter部分
-		if ($this->config['ucuse']) {
-			pc_base::load_config('uc_config');
-			require_once PHPCMS_PATH.'api/uc_client/client.php';
-			$rs= uc_user_checkemail($this->email);
-			if ($rs < 1) {
-				exit('-5');
-			}
-		}
-
-		$r = $this->db->get_one(array('email'=>$this->email));
-		if ($is_return) {
-			return !empty($r) ? -1 : 1;
-		} else {
-			!empty($r) ? exit('-1') : exit('1');
-		}
+		// if(empty($this->email)) {
+		// 	if ($is_return) {
+		// 		return -1;
+		// 	} else {
+		// 		exit('-1');
+		// 	}
+		// }
+		// //非法关键词判断
+		// $denyemail = $this->settings['denyemail'];
+		// if(is_array($denyemail)) {
+		// 	$denyemail = implode("|", $denyemail);
+		// 	$pattern = '/^('.str_replace(array('\\*', ' ', "\|"), array('.*', '', '|'), preg_quote($denyemail, '/')).')$/i';
+		// 	if(preg_match($pattern, $this->email)) {
+		// 		if ($is_return) {
+		// 			return -5;
+		// 		} else {
+		// 			exit('-5');
+		// 		}
+		// 	}
+		// }
+        //
+		// //UCenter部分
+		// if ($this->config['ucuse']) {
+		// 	pc_base::load_config('uc_config');
+		// 	require_once PHPCMS_PATH.'api/uc_client/client.php';
+		// 	$rs= uc_user_checkemail($this->email);
+		// 	if ($rs < 1) {
+		// 		exit('-5');
+		// 	}
+		// }
+        //
+		// $r = $this->db->get_one(array('email'=>$this->email));
+		// if ($is_return) {
+		// 	return !empty($r) ? -1 : 1;
+		// } else {
+		// 	!empty($r) ? exit('-1') : exit('1');
+		// }
 	}
-	
+
 	/**
 	 *  上传头像处理
 	 *  传入头像压缩包，解压到指定文件夹后删除非图片文件
 	 */
 	public function uploadavatar() {
-		
+
 		//根据用户id创建文件夹
 		if(isset($this->data['uid']) && isset($this->data['avatardata'])) {
 			$this->uid = intval($this->data['uid']);
@@ -581,10 +583,10 @@ class index extends phpsso {
 		} else {
 			exit('0');
 		}
-		
+
 		$dir1 = ceil($this->uid / 10000);
 		$dir2 = ceil($this->uid % 10000 / 1000);
-		
+
 		//创建图片存储文件夹
 		$avatarfile = pc_base::load_config('system', 'upload_path').'avatar/';
 		$dir = $avatarfile.$dir1.'/'.$dir2.'/'.$this->uid.'/';
@@ -617,7 +619,7 @@ class index extends phpsso {
 					}
 				}
 		    }
-		    closedir($handle);    
+		    closedir($handle);
 		}
 
 		pc_base::load_sys_class('image','','0');
@@ -625,7 +627,7 @@ class index extends phpsso {
 		$image->thumb($filename, $dir.'30x30.jpg', 30, 30);
 		$image->thumb($filename, $dir.'45x45.jpg', 45, 45);
 		$image->thumb($filename, $dir.'90x90.jpg', 90, 90);
-		
+
 		$this->db->update(array('avatar'=>1), array('uid'=>$this->uid));
 		exit('1');
 	}
@@ -641,10 +643,10 @@ class index extends phpsso {
 		} else {
 			exit('0');
 		}
-		
+
 		$dir1 = ceil($this->uid / 10000);
 		$dir2 = ceil($this->uid % 10000 / 1000);
-		
+
 		//图片存储文件夹
 		$avatarfile = pc_base::load_config('system', 'upload_path').'avatar/';
 		$dir = $avatarfile.$dir1.'/'.$dir2.'/'.$this->uid.'/';
