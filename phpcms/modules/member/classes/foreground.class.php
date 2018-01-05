@@ -77,7 +77,7 @@ class foreground {
 				unset($userid, $password, $phpcms_auth, $auth_key);
 			} else {
 				$forward= isset($_GET['forward']) ?  urlencode($_GET['forward']) : urlencode(get_url());
-				showmessage(L('please_login', '', 'member'), 'index.php?m=member&c=index&a=login&forward='.$forward);
+				header('Location: index.php');
 			}
 		}
 	}
