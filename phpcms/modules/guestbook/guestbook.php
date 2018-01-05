@@ -186,7 +186,7 @@ class guestbook extends admin {
 					$this->db->delete(array('guestid'=>$guestid_arr));
 
 				}
-				showmessage(L('operation_success'),'?m=guestbook&c=guestbook');
+				showmessage(L('operation_success'),'?m=guestbook&c=guestbook&a=check_register');
 			}else{
 				$guestid = intval($_GET['guestid']);
 				if($guestid < 1) return false;
@@ -194,9 +194,9 @@ class guestbook extends admin {
 				$result = $this->db->delete(array('guestid'=>$guestid));
 
 				if($result){
-					showmessage(L('operation_success'),'?m=guestbook&c=guestbook');
+					showmessage(L('operation_success'),'?m=guestbook&c=guestbook&a=check_register');
 				}else {
-					showmessage(L("operation_failure"),'?m=guestbook&c=guestbook');
+					showmessage(L("operation_failure"),'?m=guestbook&c=guestbook&a=check_register');
 				}
 			}
 			showmessage(L('operation_success'), HTTP_REFERER);

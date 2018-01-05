@@ -30,9 +30,7 @@ if(is_array($infos)){
             <td align="center"><?php echo $info['phone'];?></td>
             <td align="center" style="color:#004499"><?php echo $info['content'];?></td>
             <td align="center"><?php echo date('Y-m-d H:i:s',$info['addtime']);?></td>
-            <td align="center" width="12%"><a href="###"
-			onclick="show(<?php echo $info['guestid']?>, '<?php echo new_addslashes($info['name'])?>')"
-			title="<?php echo L('show')?>"><?php echo L('show')?></a> | <a
+            <td align="center" width="12%"> <a
 			href='?m=guestbook&c=guestbook&a=delete&guestid=<?php echo $info['guestid']?>'
 			onClick="return confirm('<?php echo L('confirm', array('message' => new_addslashes($info['name'])))?>')"><?php echo L('delete')?></a></td>
           </tr>
