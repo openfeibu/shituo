@@ -199,4 +199,6 @@ $LANG['ding_success'] = '置顶成功';
 $LANG['province'] = '省';
 $LANG['city'] = '市';
 $LANG['not_meet_the_conditions'] = '不符合条件';
+$LANG['sea_transportation'] = '海运';
+$LANG['air_transportation'] = '空运';
 ?>

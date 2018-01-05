@@ -11,7 +11,7 @@ class linkage extends admin {
 		pc_base::load_sys_class('form', '', 0);
 		$this->childnode = array();
 	}
-	
+
 	/**
 	 * 联动菜单列表
 	 */
@@ -21,7 +21,7 @@ class linkage extends admin {
 		$big_menu = array('javascript:window.top.art.dialog({id:\'add\',iframe:\'?m=admin&c=linkage&a=add\', title:\''.L('linkage_add').'\', width:\'500\', height:\'220\', lock:true}, function(){var d = window.top.art.dialog({id:\'add\'}).data.iframe;var form = d.document.getElementById(\'dosubmit\');form.click();return false;}, function(){window.top.art.dialog({id:\'add\'}).close()});void(0);', L('linkage_add'));
 		include $this->admin_tpl('linkage_list');
 	}
-	
+
 	/**
 	 * 添加联动菜单
 	 */
@@ -64,11 +64,11 @@ class linkage extends admin {
 			if($_POST['info']['parentid']) $info['parentid'] = trim($_POST['info']['parentid']);
 			$this->db->update($info,array('linkageid'=>$linkageid));
 			$id = $info['keyid'] ? $info['keyid'] : $linkageid;
-			showmessage(L('operation_success'), '', '', 'edit');			
+			showmessage(L('operation_success'), '', '', 'edit');
 		} else {
 			$linkageid = intval($_GET['linkageid']);
 			$info = $this->db->get_one(array('linkageid'=>$linkageid));
-			extract($info);	
+			extract($info);
 			$setting = string2array($setting);
 			$sitelist = $this->sites->get_list();
 			foreach($sitelist as $id=>$v) {
@@ -78,7 +78,7 @@ class linkage extends admin {
 			$show_validator = true;
 			include $this->admin_tpl('linkage_edit');
 		}
-		
+
 	}
 	/**
 	 * 删除菜单
@@ -95,9 +95,9 @@ class linkage extends admin {
 		$this->db->delete(array('keyid' => $linkageid));
 		$id = $keyid ? $keyid : $linkageid;
 		if(!$keyid)$this->_dlecache($linkageid);
-		showmessage(L('operation_success'));	
+		showmessage(L('operation_success'));
 	}
-	
+
 	public function public_cache() {
 		$linkageid = intval($_GET['linkageid']);
 		$this->_cache($linkageid);
@@ -135,7 +135,7 @@ class linkage extends admin {
 			$areas[$area['linkageid']]['str_manage'] = ($sum > 40 && $this->_is_last_node($area['keyid'],$area['linkageid'])) ? '<a href="?m=admin&c=linkage&a=public_manage_submenu&keyid='.$area['keyid'].'&parentid='.$area['linkageid'].'">'.L('linkage_manage_submenu').'</a> | ' : '';
 			$areas[$area['linkageid']]['str_manage'] .= '<a href="javascript:void(0);" onclick="add(\''.$keyid.'\',\''.new_addslashes($area['name']).'\',\''.$area['linkageid'].'\')">'.L('linkage_add_submenu').'</a> | <a href="javascript:void(0);" onclick="edit(\''.$area['linkageid'].'\',\''.$area['name'].'\',\''.$area['parentid'].'\')">'.L('edit').'</a> | <a href="javascript:confirmurl(\'?m=admin&c=linkage&a=delete&linkageid='.$area['linkageid'].'&keyid='.$area['keyid'].'\', \''.L('linkage_is_del').'\')">'.L('delete').'</a> ';
 		}
-		
+
 		$str  = "<tr>
 					<td align='center' width='80'><input name='listorders[\$id]' type='text' size='3' value='\$listorder' class='input-text-c'></td>
 					<td align='center' width='100'>\$id</td>
@@ -145,14 +145,14 @@ class linkage extends admin {
 				</tr>";
 		$tree->init($areas);
 		$submenu = $tree->get_tree($sql_parentid, $str);
-		$big_menu =array('javascript:window.top.art.dialog({id:\'add\',iframe:\'?m=admin&c=linkage&a=public_sub_add&keyid='.$keyid.'\', title:\''.L('linkage_add').'\', width:\'500\', height:\'430\', lock:true}, function(){var d = window.top.art.dialog({id:\'add\'}).data.iframe;var form = d.document.getElementById(\'dosubmit\');form.click();return false;}, function(){window.top.art.dialog({id:\'add\'}).close()});void(0);', L('linkage_add'));		
+		$big_menu =array('javascript:window.top.art.dialog({id:\'add\',iframe:\'?m=admin&c=linkage&a=public_sub_add&keyid='.$keyid.'\', title:\''.L('linkage_add').'\', width:\'500\', height:\'430\', lock:true}, function(){var d = window.top.art.dialog({id:\'add\'}).data.iframe;var form = d.document.getElementById(\'dosubmit\');form.click();return false;}, function(){window.top.art.dialog({id:\'add\'}).close()});void(0);', L('linkage_add'));
 		include $this->admin_tpl('linkage_submenu');
 	}
-	
+
 	/**
 	 * 子菜单添加
 	 */
-	public function public_sub_add() {		
+	public function public_sub_add() {
 		if(isset($_POST['dosubmit'])) {
 			$info = array();
 			$info['keyid'] = isset($_POST['keyid']) && trim($_POST['keyid']) ? trim(intval($_POST['keyid'])) : showmessage(L('linkage_parameter_error'));
@@ -166,7 +166,7 @@ class linkage extends admin {
 				if(!$name) continue;
 				$info['name'] = $name;
 				$this->db->insert($info);
-			}		
+			}
 			if($this->db->insert_id()){
 				showmessage(L('operation_success'), '', '', 'add');
 			}
@@ -175,7 +175,7 @@ class linkage extends admin {
 			$linkageid = $_GET['linkageid'];
 			$list = form::select_linkage($keyid,'0','info[parentid]', 'parentid', L('cat_empty'), $linkageid);
 			$show_validator = true;
-			include $this->admin_tpl('linkage_sub_add');			
+			include $this->admin_tpl('linkage_sub_add');
 		}
 	}
 	public function ajax_getlist() {
@@ -193,9 +193,9 @@ class linkage extends admin {
 		if(count($s)>0) {
 			$jsonstr = json_encode($s);
 			echo $_GET['callback'].'(',$jsonstr,')';
-			exit;			
+			exit;
 		} else {
-			echo $_GET['callback'].'()';exit;			
+			echo $_GET['callback'].'()';exit;
 		}
 	}
 	/**
@@ -214,7 +214,7 @@ class linkage extends admin {
 		setcache($linkageid, $info,'linkage');
 		return $info;
 	}
-	
+
 	/**
 	 * 删除联动菜单缓存文件
 	 * @param init $linkageid
@@ -222,7 +222,7 @@ class linkage extends admin {
 	private function _dlecache($linkageid) {
 		return delcache($linkageid,'linkage');
 	}
-	
+
 	/**
 	 * 子菜单列表
 	 * @param unknown_type $keyid
@@ -231,18 +231,18 @@ class linkage extends admin {
 		$keyid = intval($keyid);
 		$datas = array();
 		$where = ($keyid > 0) ? array('keyid'=>$keyid) : '';
-		$result = $this->db->select($where,'*','','listorder ,linkageid');	
+		$result = $this->db->select($where,'*','','listorder ,linkageid');
 		if(is_array($result)) {
 			foreach($result as $r) {
-				$arrchildid = $r['arrchildid'] = $this->get_arrchildid($r['linkageid'],$result);				
+				$arrchildid = $r['arrchildid'] = $this->get_arrchildid($r['linkageid'],$result);
 				$child = $r['child'] =  is_numeric($arrchildid) ? 0 : 1;
-				$this->db->update(array('child'=>$child,'arrchildid'=>$arrchildid),array('linkageid'=>$r['linkageid']));			
+				$this->db->update(array('child'=>$child,'arrchildid'=>$arrchildid),array('linkageid'=>$r['linkageid']));
 				$datas[$r['linkageid']] = $r;
 			}
 		}
 		return $datas;
 	}
-	
+
 	/**
 	 * 获取所属站点
 	 * @param unknown_type $keyid
@@ -253,7 +253,7 @@ class linkage extends admin {
 		return $info ? $info['siteid'] : false;
 	}
 
-	
+
 	/**
 	 * 获取联动菜单子节点
 	 * @param int $linkageid
@@ -268,11 +268,11 @@ class linkage extends admin {
 			}
 		}
 	}
-	
+
 	private function _is_last_node($keyid,$linkageid) {
 		$result = $this->db->count(array('keyid'=>$keyid,'parentid'=>$linkageid));
 		return $result ? true : false;
-	}	
+	}
 	/**
 	 * 返回菜单ID
 	 */
@@ -281,7 +281,7 @@ class linkage extends admin {
 		$infos = $this->db->select($where);
 		include $this->admin_tpl('linkage_get_list');
 	}
-	
+
 	/**
 	 * 获取子菜单ID列表
 	 * @param $linkageid 联动菜单id
@@ -293,11 +293,11 @@ class linkage extends admin {
 			foreach($linkageinfo as $linkage) {
 				if($linkage['parentid'] && $linkage['linkageid'] != $linkageid && $linkage['parentid']== $linkageid) 	{
 					$arrchildid .= ','.$this->get_arrchildid($linkage['linkageid'],$linkageinfo);
-	
+
 				}
 			}
 		}
 		return $arrchildid;
-	}		
+	}
 }
 ?>

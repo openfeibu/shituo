@@ -459,4 +459,6 @@ $LANG['guestbook'] = '留言板';
 $LANG['edit_guestbook'] = '编辑留言板';
 $LANG['delete_guestbook'] = '删除留言板';
 $LANG['guestbook_setting'] = '模块配置';
+$LANG['waybill'] = '运单管理';
+$LANG['waybill'] = '运单列表';
 ?>

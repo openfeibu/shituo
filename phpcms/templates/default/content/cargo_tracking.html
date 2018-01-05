@@ -25,18 +25,20 @@
                                 {if $logistics_data}
                                 {php $i=0;}
                                 {loop $logistics_data $val}
-                                {if $i ==0}
-                                <div class="line_search_text_resule_item fb-position-relative first">
-                                    <label><?php echo $val[$GLOBALS['prefix'].'content'];?></label></p>
-                                    <span>{date('Y-m-d H:i:s',$val[addtime])}</span>
-                                </div>
-                                {else}
-                                <div class="line_search_text_resule_item fb-position-relative">
-                                    <p><?php echo $val[$GLOBALS['prefix'].'content'];?></p>
-                                    <span>{date('Y-m-d H:i:s',$val[addtime])}</span>
-                                </div>
+                                {if $val[$GLOBALS['prefix'].'content'}
+                                    {if $i ==0}
+                                    <div class="line_search_text_resule_item fb-position-relative first">
+                                        <label><?php echo $val[$GLOBALS['prefix'].'content'];?></label></p>
+                                        <span>{date('Y-m-d H:i:s',$val[addtime])}</span>
+                                    </div>
+                                    {else}
+                                    <div class="line_search_text_resule_item fb-position-relative">
+                                        <p><?php echo $val[$GLOBALS['prefix'].'content'];?></p>
+                                        <span>{date('Y-m-d H:i:s',$val[addtime])}</span>
+                                    </div>
+                                    {/if}
+                                    {php $i++}
                                 {/if}
-                                {php $i++}
                                 {/loop}
                                 {/if}
 
@@ -47,9 +49,9 @@
                               {SL('no_active')}
 
                             </div>
-							
+
 							{else}
-							
+
                             <div class=" fb-position-relative" style="text-align:center;font-size:16px;line-height:60px;">
 							  {SL('not_querying')}
                             </div>

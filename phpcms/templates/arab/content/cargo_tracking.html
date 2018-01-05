@@ -16,7 +16,7 @@
                             <label for="" class="fb-inlineBlock">{SL('company')}</label>
                             <input type="text" name="search_num" class="search_num fb-inlineBlock">
 							<label for="" class="fb-inlineBlock">{SL('number')}</label>
-                            
+
                         </form>
                     </div>
                     <div class="line_search_text">
@@ -26,21 +26,23 @@
                             {if $logistics_data}
                             {php $i=0;}
                             {loop $logistics_data $val}
-                            {if $i ==0}
-                            <div class="line_search_text_resule_item fb-position-relative first">
-                                <label><?php echo $val[$GLOBALS['prefix'].'content'];?></label></p>
-                                <span style="unicode-bidi:embed !important;">{date('s:i:H d-m-Y ',$val[addtime])}</span>
-                            </div>
-                            {else}
-                            <div class="line_search_text_resule_item fb-position-relative">
-                                <p><?php echo $val[$GLOBALS['prefix'].'content'];?></p>
-                                 <span style="unicode-bidi:embed !important;">{date('s:i:H d-m-Y ',$val[addtime])}</span>
-                            </div>
+                            {if $val[$GLOBALS['prefix'].'content'}
+                                {if $i ==0}
+                                <div class="line_search_text_resule_item fb-position-relative first">
+                                    <label><?php echo $val[$GLOBALS['prefix'].'content'];?></label></p>
+                                    <span style="unicode-bidi:embed !important;">{date('s:i:H d-m-Y ',$val[addtime])}</span>
+                                </div>
+                                {else}
+                                <div class="line_search_text_resule_item fb-position-relative">
+                                    <p><?php echo $val[$GLOBALS['prefix'].'content'];?></p>
+                                     <span style="unicode-bidi:embed !important;">{date('s:i:H d-m-Y ',$val[addtime])}</span>
+                                </div>
+                                {/if}
+                                {php $i++}
                             {/if}
-                            {php $i++}
                             {/loop}
                             {/if}
-							
+
                         </div>
 						{elseif $_POST['search_num']}
 							 <div class="line_search_text_title">{SL('number')}：{$_POST['search_num']}</div>
@@ -48,9 +50,9 @@
                               {SL('no_active')}
 
                             </div>
-							
+
 						{else}
-							
+
                             <div class=" fb-position-relative" style="text-align:center;font-size:16px;line-height:60px;">
 							  {SL('not_querying')}
                             </div>
