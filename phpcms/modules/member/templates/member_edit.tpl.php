@@ -26,23 +26,23 @@
 	// 	onerror : "<?php echo L('email_already_exist')?>",
 	// 	onwait : "<?php echo L('connecting_please_wait')?>"
 	// }).defaultPassed();
-	$("#nickname").formValidator({onshow:"<?php echo L('input').L('nickname')?>",onfocus:"<?php echo L('nickname').L('between_2_to_20')?>"}).inputValidator({min:2,max:20,onerror:"<?php echo L('nickname').L('between_2_to_20')?>"}).regexValidator({regexp:"ps_username",datatype:"enum",onerror:"<?php echo L('nickname').L('format_incorrect')?>"}).ajaxValidator({
-	    type : "get",
-		url : "",
-		data :"m=member&c=index&a=public_checknickname_ajax&userid=<?php echo $memberinfo['userid'];?>",
-		datatype : "html",
-		async:'false',
-		success : function(data){
-            if( data == "1" ) {
-                return true;
-			} else {
-                return false;
-			}
-		},
-		buttons: $("#dosubmit"),
-		onerror : "<?php echo L('username').L('already_exist')?>",
-		onwait : "<?php echo L('connecting_please_wait')?>"
-	}).defaultPassed();
+	// $("#nickname").formValidator({onshow:"<?php echo L('input').L('nickname')?>",onfocus:"<?php echo L('nickname').L('between_2_to_20')?>"}).inputValidator({min:2,max:20,onerror:"<?php echo L('nickname').L('between_2_to_20')?>"}).regexValidator({regexp:"ps_username",datatype:"enum",onerror:"<?php echo L('nickname').L('format_incorrect')?>"}).ajaxValidator({
+	//     type : "get",
+	// 	url : "",
+	// 	data :"m=member&c=index&a=public_checknickname_ajax&userid=<?php echo $memberinfo['userid'];?>",
+	// 	datatype : "html",
+	// 	async:'false',
+	// 	success : function(data){
+    //         if( data == "1" ) {
+    //             return true;
+	// 		} else {
+    //             return false;
+	// 		}
+	// 	},
+	// 	buttons: $("#dosubmit"),
+	// 	onerror : "<?php echo L('username').L('already_exist')?>",
+	// 	onwait : "<?php echo L('connecting_please_wait')?>"
+	// }).defaultPassed();
   });
 </script>
 <div class="pad-10">

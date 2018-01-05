@@ -765,6 +765,7 @@ class member extends admin {
 	}
 	public function import()
     {
+		ini_set('max_execution_time', '0');
         $file_path=$_FILES['file_stu']['tmp_name'];
         require PC_PATH.'libs/classes/PHPExcel.php';
         require PC_PATH.'libs/classes/PHPExcel/IOFactory.php';
@@ -778,25 +779,28 @@ class member extends admin {
             $info = array();
             if($key !=2 && trim($value['B']))
             {
-				$info['nickname'] = $value['A'];
-				$info['username'] = $value['B'];
-				$info['regip'] = ip();
-				$info['email'] = $info['username'].'@shituo.com';
-				$info['password'] = $info['username']."123";
+				if(!$this->db->get_one("username ='".$info['username']."' "))
+				{
+					$info['nickname'] = trim($value['A']);
+					$info['username'] = trim($value['B']);
+					$info['regip'] = ip();
+					$info['email'] = $info['username'].'@shituo.com';
+					$info['password'] = $info['username']."123";
 
-				$status = $this->client->ps_member_register($info['username'], $info['password'], $info['email'], $info['regip']);
+					$status = $this->client->ps_member_register($info['username'], $info['password'], $info['email'], $info['regip']);
 
-				if($status > 0) {
-					$info['phpssouid'] = $status;
+					if($status > 0) {
+						$info['phpssouid'] = $status;
 
-					//取phpsso密码随机数
-					$memberinfo = $this->client->ps_get_member_info($status);
-					$memberinfo = unserialize($memberinfo);
-					$info['encrypt'] = $memberinfo['random'];
-					$info['password'] = password($info['password'], $info['encrypt']);
-					$info['regdate'] = $info['lastdate'] = SYS_TIME;
+						//取phpsso密码随机数
+						$memberinfo = $this->client->ps_get_member_info($status);
+						$memberinfo = unserialize($memberinfo);
+						$info['encrypt'] = $memberinfo['random'];
+						$info['password'] = password($info['password'], $info['encrypt']);
+						$info['regdate'] = $info['lastdate'] = SYS_TIME;
 
-					$this->db->insert($info);
+						$this->db->insert($info);
+					}
 				}
             }
         }
