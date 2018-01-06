@@ -473,7 +473,7 @@ function SL($language = 'no_language') {
 	static $LANG = array();
 	static $LANG_MODULES = array();
 	static $lang = '';
-	$lang = $GLOBALS['lang'];
+	$lang = $GLOBALS['lang'] ? $GLOBALS['lang'] : 'zh-cn';
 	require_once PC_PATH.'languages'.DIRECTORY_SEPARATOR.$lang.DIRECTORY_SEPARATOR.'common.lang.php';
 
 	if(!array_key_exists($language,$LANG)) {
