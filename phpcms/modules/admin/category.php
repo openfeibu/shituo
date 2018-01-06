@@ -72,7 +72,7 @@ class category extends admin {
 				$categorys[$r['catid']] = $r;
 			}
 		}
-		$str  = "<tr>
+		$str  = "<tr class='tr'>
 					<td align='center'><input name='listorders[\$id]' type='text' size='3' value='\$listorder' class='input-text-c'></td>
 					<td align='center'>\$id</td>
 					<td >\$spacer\$catname\$display_icon</td>
