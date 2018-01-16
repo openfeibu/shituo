@@ -38,18 +38,18 @@ include $this->admin_tpl('header');?>
 <!--
 	window.top.$('#display_center_id').css('display','none');
 //-->
-$(".tr").each(function(){
-    var tdArr = $(this).children();
-    var catid = tdArr.eq(1).text();//收入金额
-    var arr = ["46", "47", "48","49","50","51","52","53"];
-    // jquery $.inArray("c", arr)
-    var result = $.inArray(catid, arr);
-    console.log(catid);
-     if(result < 0)
-     {
-        $(this).hide();
-    }
-});
+// $(".tr").each(function(){
+    // var tdArr = $(this).children();
+    // var catid = tdArr.eq(1).text();
+    // var arr = ["46", "47", "48","49","50","51","52","53"];
+    // // jquery $.inArray("c", arr)
+    // var result = $.inArray(catid, arr);
+    // console.log(catid);
+     // // if(result < 0)
+     // // {
+        // // $(this).hide();
+    // // }
+// });
 </script>
 </body>
 </html>

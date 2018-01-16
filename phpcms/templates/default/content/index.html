@@ -25,7 +25,10 @@
 
         </div>
         <div class="w1200 fb-position-absolute cargoTracking_box">
+			<div class="openTag fb-position-absolute"><?php echo SL('query');?></div>
             <div class="cargoTracking">
+				<div class="close fb-position-absolute">X</div>
+				
                 <div class="cargoTracking_title"><?php echo $CATEGORYS[20][$GLOBALS['prefix']."catname"]; ?></div>
                 <form action="index.php?m=content&c=index&a=cargo_tracking&catid=20" method="post" target="_blank">
                     <div class="item">
@@ -148,7 +151,7 @@
         </div>
     </div>
     <div class="home_ad fb-position-relative">
-        <a href=""><img class="fb-position-absolute" src="{CSS_PATH}shituo/images/home_ad.png" alt=""></a>
+        <a href="{siteurl(1)}/index.php?m=content&c=index&a=lists&catid=22"><img class="fb-position-absolute" src="{CSS_PATH}shituo/images/home_ad.png" alt=""></a>
     </div>
     <div class="fb-figureCarousel fb-position-relative branchOffice w1200">
         <div class="fb-figureCarousel-boxOverflow ">
@@ -258,6 +261,14 @@
         interval: 3000, //轮播间隔
         pagination: true,//分页器
     });
+	$(".cargoTracking_box .close").on("click",function(){
+		$(".cargoTracking").fadeOut(200);
+		$(".cargoTracking_box .openTag").fadeIn(300);
+	})
+	$(".cargoTracking_box .openTag").on("click",function(){
+		$(".cargoTracking").fadeIn(300);
+		$(".cargoTracking_box .openTag").fadeOut(200);
+	})
 
     $(window).on("scroll",function(){
         var product_ky_flag = false;
