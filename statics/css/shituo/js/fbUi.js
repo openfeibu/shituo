@@ -418,7 +418,7 @@
 			width:$('.fb-banner-slide').width(),
 		};
 		var fb = $.extend(defaults, options || {});
-		var imgLength = $el.find(".fb-banner-fade-item").length    //图片个数
+		var imgLength = $el.find(".fb-banner-slide-item").length    //图片个数
 			,run = null //轮播图 ID
 			,bannerIndex = 0 ;
 		$el.find('.fb-banner-slide-item img').css({"width":fb.width})
@@ -459,9 +459,11 @@
 		};
 		//定时
 		if(fb.autoPlay){
-			$el.hover(function(){clearInterval(run)},function(){bannerRun()});
+			// $el.hover(function(){clearInterval(run)},function(){bannerRun()});
 			bannerRun();
-		}function bannerRun(){
+		}
+		function bannerRun(){
+			
 			run = setInterval(function(){
 				i = ++bannerIndex > imgLength-1 ? 0 : bannerIndex;
 				bannerIndex = i;
